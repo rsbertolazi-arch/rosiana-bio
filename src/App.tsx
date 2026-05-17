@@ -59,7 +59,7 @@ function App() {
     e.preventDefault()
     setFormSending(true)
     try {
-      const res = await fetch('https://formsubmit.co/ajax/rsbgestão@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/rsbgestao@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
@@ -944,13 +944,13 @@ function App() {
             {/* Contact Info */}
             <div className="flex flex-col justify-center gap-6">
               <a
-                href="mailto:rsbgestão@gmail.com"
+                href="mailto:rsbgestao@gmail.com"
                 className="flex items-center gap-4 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
               >
                 <Mail className="w-6 h-6 text-violet-300 group-hover:text-violet-200" />
                 <div className="text-left">
                   <div className="text-sm text-slate-400">E-mail</div>
-                  <div className="font-medium">rsbgestão@gmail.com</div>
+                  <div className="font-medium">rsbgestao@gmail.com</div>
                 </div>
               </a>
               <a
