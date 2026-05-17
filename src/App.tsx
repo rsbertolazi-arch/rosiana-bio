@@ -361,7 +361,7 @@ function App() {
                 Transformando negócios através da{' '}
                 <span className="text-violet-600">tecnologia e inovação</span>
               </h2>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
+              <div className="space-y-4 text-slate-600 leading-relaxed text-justify">
                 <p>
                   Executiva de Tecnologia com atuação em transformação digital, liderança estratégica
                   e evolução de operações orientadas a inovação. Experiência na liderança de times
