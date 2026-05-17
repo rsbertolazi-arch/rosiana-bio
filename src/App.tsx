@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type FormEvent } from 'react'
 import {
   Briefcase,
   GraduationCap,
@@ -39,6 +39,7 @@ function App() {
   const [formIsWhatsapp, setFormIsWhatsapp] = useState(false)
   const [formMessage, setFormMessage] = useState('')
   const [formSent, setFormSent] = useState(false)
+  const [formSending, setFormSending] = useState(false)
 
   const formatPhone = (value: string) => {
     const digits = value.replace(/\D/g, '')
@@ -56,24 +57,50 @@ function App() {
 
   const resetForm = () => {
     setFormSent(false)
+    setFormSending(false)
     setFormName('')
     setFormPhone('')
     setFormIsWhatsapp(false)
     setFormMessage('')
   }
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    if (params.get('sent') === '1') {
-      setFormSent(true)
-      window.history.replaceState({}, '', window.location.pathname)
-      setTimeout(() => resetForm(), 30000)
-      setTimeout(() => {
-        const el = document.getElementById('contact')
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-      }, 100)
+  const buildMailtoFallback = () => {
+    const subject = encodeURIComponent(`Novo contato via site - ${formName}`)
+    const body = encodeURIComponent(
+      `Nome: ${formName}\nTelefone: ${formPhone}\nWhatsApp: ${formIsWhatsapp ? 'Sim' : 'Não'}\n\nMensagem:\n${formMessage}`
+    )
+    return `mailto:rsbgestao@gmail.com?subject=${subject}&body=${body}`
+  }
+
+  const handleFormSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    setFormSending(true)
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/rsbgestao@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          Nome: formName,
+          Telefone: formPhone,
+          WhatsApp: formIsWhatsapp ? 'Sim' : 'Não',
+          Mensagem: formMessage,
+          _subject: `Novo contato via site - ${formName}`,
+          _captcha: 'false',
+          _template: 'table',
+        }),
+      })
+      if (res.ok) {
+        setFormSent(true)
+        setTimeout(() => resetForm(), 30000)
+      } else {
+        window.location.href = buildMailtoFallback()
+      }
+    } catch {
+      window.location.href = buildMailtoFallback()
+    } finally {
+      setFormSending(false)
     }
-  }, [])
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -871,20 +898,11 @@ function App() {
                   <p className="text-slate-300 text-sm">Entraremos em contato em breve.</p>
                 </div>
               ) : (
-                <form
-                  action="https://formsubmit.co/rsbgestao@gmail.com"
-                  method="POST"
-                  className="space-y-5"
-                >
-                  <input type="hidden" name="_next" value={window.location.origin + '?sent=1'} />
-                  <input type="hidden" name="_captcha" value="false" />
-                  <input type="hidden" name="_subject" value="Novo contato via site" />
-                  <input type="hidden" name="_template" value="table" />
+                <form onSubmit={handleFormSubmit} className="space-y-5">
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-1.5">Nome Completo</label>
                     <input
                       type="text"
-                      name="Nome"
                       required
                       value={formName}
                       onChange={(e) => setFormName(e.target.value)}
@@ -898,7 +916,6 @@ function App() {
                       <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                       <input
                         type="tel"
-                        name="Telefone"
                         required
                         value={formPhone}
                         onChange={(e) => handlePhoneChange(e.target.value)}
@@ -911,8 +928,6 @@ function App() {
                     <input
                       type="checkbox"
                       id="whatsapp"
-                      name="WhatsApp"
-                      value="Sim"
                       checked={formIsWhatsapp}
                       onChange={(e) => setFormIsWhatsapp(e.target.checked)}
                       className="w-4 h-4 rounded border-white/20 bg-white/10 text-violet-500 focus:ring-violet-400"
@@ -927,7 +942,6 @@ function App() {
                       Mensagem <span className="text-slate-400">({formMessage.length}/300)</span>
                     </label>
                     <textarea
-                      name="Mensagem"
                       required
                       maxLength={300}
                       rows={4}
@@ -939,10 +953,11 @@ function App() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-violet-600/30"
+                    disabled={formSending}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 disabled:bg-violet-800 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all shadow-lg shadow-violet-600/30"
                   >
                     <Send className="w-4 h-4" />
-                    Enviar
+                    {formSending ? 'Enviando...' : 'Enviar'}
                   </button>
                 </form>
               )}
