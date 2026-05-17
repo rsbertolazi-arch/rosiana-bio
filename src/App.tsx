@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type FormEvent } from 'react'
 import {
   Briefcase,
   GraduationCap,
@@ -23,6 +23,10 @@ import {
   Layers,
   Youtube,
   Shield,
+  Send,
+  Phone,
+  CheckCircle,
+  MessageSquare,
 } from 'lucide-react'
 import './App.css'
 
@@ -30,6 +34,51 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
   const [scrollY, setScrollY] = useState(0)
+  const [formName, setFormName] = useState('')
+  const [formPhone, setFormPhone] = useState('')
+  const [formIsWhatsapp, setFormIsWhatsapp] = useState(false)
+  const [formMessage, setFormMessage] = useState('')
+  const [formSent, setFormSent] = useState(false)
+  const [formSending, setFormSending] = useState(false)
+
+  const formatPhone = (value: string) => {
+    const digits = value.replace(/\D/g, '')
+    if (digits.length === 0) return ''
+    if (digits.length <= 2) return `(${digits}`
+    if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`
+    if (digits.length <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`
+    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`
+  }
+
+  const handlePhoneChange = (value: string) => {
+    const digits = value.replace(/\D/g, '').slice(0, 11)
+    setFormPhone(formatPhone(digits))
+  }
+
+  const handleFormSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    setFormSending(true)
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/rsbgestao@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          Nome: formName,
+          Telefone: formPhone,
+          WhatsApp: formIsWhatsapp ? 'Sim' : 'Nao',
+          Mensagem: formMessage,
+          _subject: `Novo contato via site - ${formName}`,
+        }),
+      })
+      if (res.ok) {
+        setFormSent(true)
+      }
+    } catch {
+      setFormSent(true)
+    } finally {
+      setFormSending(false)
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -800,34 +849,133 @@ function App() {
 
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-gradient-to-br from-violet-900 via-indigo-900 to-slate-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-violet-300 text-sm font-medium mb-6 backdrop-blur-sm">
-            <Mail className="w-4 h-4" />
-            Contato
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-violet-300 text-sm font-medium mb-6 backdrop-blur-sm">
+              <Mail className="w-4 h-4" />
+              Contato
+            </div>
+            <h2 className="text-4xl font-bold text-white mb-6">Vamos conversar?</h2>
+            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+              Estou disponivel para palestras, consultorias, parcerias e oportunidades de colaboracao
+              em transformacao digital e inteligencia artificial.
+            </p>
           </div>
-          <h2 className="text-4xl font-bold text-white mb-6">Vamos conversar?</h2>
-          <p className="text-lg text-slate-300 mb-12 max-w-2xl mx-auto">
-            Estou disponivel para palestras, consultorias, parcerias e oportunidades de colaboracao
-            em transformacao digital e inteligencia artificial.
-          </p>
 
-          <div className="grid sm:grid-cols-2 gap-6 max-w-lg mx-auto">
-            <a
-              href="mailto:rsbgestao@gmail.com"
-              className="flex items-center justify-center gap-3 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
-            >
-              <Mail className="w-5 h-5 text-violet-300 group-hover:text-violet-200" />
-              <span className="font-medium">E-mail</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/rsbertolazi/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
-            >
-              <Linkedin className="w-5 h-5 text-violet-300 group-hover:text-violet-200" />
-              <span className="font-medium">LinkedIn</span>
-            </a>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Contact Form */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              {formSent ? (
+                <div className="flex flex-col items-center justify-center h-full text-center py-12">
+                  <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
+                    <CheckCircle className="w-8 h-8 text-green-400" />
+                  </div>
+                  <p className="text-white text-lg font-semibold mb-2">Seu contato foi enviado com sucesso.</p>
+                  <p className="text-slate-300 text-sm">Entraremos em contato em breve.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleFormSubmit} className="space-y-5">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-1.5">Nome Completo</label>
+                    <input
+                      type="text"
+                      required
+                      value={formName}
+                      onChange={(e) => setFormName(e.target.value)}
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:ring-1 focus:ring-violet-400 transition-colors"
+                      placeholder="Seu nome completo"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-1.5">Telefone de Contato</label>
+                    <div className="relative">
+                      <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <input
+                        type="tel"
+                        required
+                        value={formPhone}
+                        onChange={(e) => handlePhoneChange(e.target.value)}
+                        className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:ring-1 focus:ring-violet-400 transition-colors"
+                        placeholder="(DD) XXXXX-XXXX"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="checkbox"
+                      id="whatsapp"
+                      checked={formIsWhatsapp}
+                      onChange={(e) => setFormIsWhatsapp(e.target.checked)}
+                      className="w-4 h-4 rounded border-white/20 bg-white/10 text-violet-500 focus:ring-violet-400"
+                    />
+                    <label htmlFor="whatsapp" className="text-sm text-slate-300 flex items-center gap-1.5">
+                      <MessageSquare className="w-4 h-4 text-green-400" />
+                      Este telefone tambem e WhatsApp
+                    </label>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-300 mb-1.5">
+                      Mensagem <span className="text-slate-400">({formMessage.length}/300)</span>
+                    </label>
+                    <textarea
+                      required
+                      maxLength={300}
+                      rows={4}
+                      value={formMessage}
+                      onChange={(e) => setFormMessage(e.target.value)}
+                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:border-violet-400 focus:ring-1 focus:ring-violet-400 transition-colors resize-none"
+                      placeholder="Escreva sua mensagem aqui..."
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={formSending}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 disabled:bg-violet-800 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all shadow-lg shadow-violet-600/30"
+                  >
+                    <Send className="w-4 h-4" />
+                    {formSending ? 'Enviando...' : 'Enviar'}
+                  </button>
+                </form>
+              )}
+            </div>
+
+            {/* Contact Info */}
+            <div className="flex flex-col justify-center gap-6">
+              <a
+                href="mailto:rsbgestao@gmail.com"
+                className="flex items-center gap-4 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
+              >
+                <Mail className="w-6 h-6 text-violet-300 group-hover:text-violet-200" />
+                <div className="text-left">
+                  <div className="text-sm text-slate-400">E-mail</div>
+                  <div className="font-medium">rsbgestao@gmail.com</div>
+                </div>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/rsbertolazi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
+              >
+                <Linkedin className="w-6 h-6 text-violet-300 group-hover:text-violet-200" />
+                <div className="text-left">
+                  <div className="text-sm text-slate-400">LinkedIn</div>
+                  <div className="font-medium">rsbertolazi</div>
+                </div>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/iaempauta/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
+              >
+                <Mic className="w-6 h-6 text-violet-300 group-hover:text-violet-200" />
+                <div className="text-left">
+                  <div className="text-sm text-slate-400">IA em Pauta</div>
+                  <div className="font-medium">iaempauta</div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </section>
