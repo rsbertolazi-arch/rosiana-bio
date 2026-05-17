@@ -526,7 +526,7 @@ function App() {
                   <div>
                     <h3 className="text-white font-semibold mb-1">Publicacoes</h3>
                     <p className="text-slate-400 text-sm">
-                      Livros, ebooks e artigos sobre tecnologia e gestao
+                      Livros, e-Books e artigos sobre tecnologia e gestao
                     </p>
                   </div>
                 </div>
@@ -609,7 +609,7 @@ function App() {
               <BookOpen className="w-4 h-4" />
               Publicacoes
             </div>
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">Livros, Ebooks & Artigos</h2>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Livros, e-Books & Artigos</h2>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
               Compartilhando conhecimento sobre tecnologia, gestao e inteligencia artificial
             </p>
@@ -654,9 +654,9 @@ function App() {
             </div>
           </div>
 
-          {/* Ebooks */}
+          {/* e-Books */}
           <div className="mb-16">
-            <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">Ebooks</h3>
+            <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">e-Books</h3>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <a
                 href="https://x9x8f6d.short.gy/ebook_lideranca_rsb"
@@ -678,7 +678,7 @@ function App() {
                   </p>
                   <span className="inline-flex items-center gap-1 text-violet-600 text-sm font-medium">
                     <Download className="w-4 h-4" />
-                    Baixar ebook
+                    Baixar e-Book
                   </span>
                 </div>
               </a>
@@ -703,7 +703,7 @@ function App() {
                   </p>
                   <span className="inline-flex items-center gap-1 text-violet-600 text-sm font-medium">
                     <Download className="w-4 h-4" />
-                    Baixar ebook
+                    Baixar e-Book
                   </span>
                 </div>
               </a>
