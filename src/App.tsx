@@ -1,0 +1,807 @@
+import { useState, useEffect } from 'react'
+import {
+  Briefcase,
+  GraduationCap,
+  Award,
+  BookOpen,
+  Mic,
+  Mail,
+  Linkedin,
+  ChevronDown,
+  Brain,
+  Code,
+  Users,
+  Target,
+  Sparkles,
+  Menu,
+  X,
+  ExternalLink,
+  MapPin,
+  Calendar,
+  Download,
+  FileText,
+} from 'lucide-react'
+import './App.css'
+
+function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY)
+      const sections = ['home', 'about', 'expertise', 'career', 'publications', 'certifications', 'contact']
+      for (const section of sections.reverse()) {
+        const el = document.getElementById(section)
+        if (el && window.scrollY >= el.offsetTop - 100) {
+          setActiveSection(section)
+          break
+        }
+      }
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+      setIsMenuOpen(false)
+    }
+  }
+
+  const navItems = [
+    { id: 'home', label: 'Inicio' },
+    { id: 'about', label: 'Sobre' },
+    { id: 'expertise', label: 'Expertise' },
+    { id: 'career', label: 'Carreira' },
+    { id: 'publications', label: 'Publicacoes' },
+    { id: 'certifications', label: 'Certificacoes' },
+    { id: 'contact', label: 'Contato' },
+  ]
+
+  const careerData = [
+    {
+      company: 'F1RST Digital Services',
+      role: 'IT Leader',
+      period: '12/2025 - Atual',
+      description:
+        'Gestao de Engenharia de Software em iniciativas relacionadas a contas corporativas (Pessoa Juridica). Lideranca de times atuando em solucoes de alta e baixa plataforma em ambiente de alta criticidade operacional. Atuacao estrategica conectando tecnologia, negocio e entrega continua, incluindo utilizacao pratica de Inteligencia Artificial.',
+    },
+    {
+      company: 'CNP Seguradora',
+      role: 'Coordenadora de TI',
+      period: '09/2024 - 10/2025',
+      description:
+        'Lideranca de times responsaveis por desenvolvimento e sustentacao de sistemas estrategicos de seguros e odontologia. Evolucao de plataformas criticas com foco em estabilidade, escalabilidade e eficiencia operacional.',
+    },
+    {
+      company: 'Mills',
+      role: 'Coordenadora Digital',
+      period: '06/2024 - 08/2024',
+      description:
+        'Lideranca de iniciativas de transformacao digital e modernizacao tecnologica. Gestao de times multidisciplinares em projetos envolvendo Java, Node.js, RPA e microsservicos.',
+    },
+    {
+      company: 'Conduent Brasil',
+      role: 'Coordenadora de Desenvolvimento e Sistemas',
+      period: '03/2023 - 02/2024',
+      description:
+        'Gestao de equipes responsaveis por sistemas ligados a previdencia privada. Coordenacao tecnica e estrategica de iniciativas envolvendo .NET, ASP Core e aplicacoes corporativas.',
+    },
+    {
+      company: 'Savoyard Fromagerie',
+      role: 'Socia-Proprietaria',
+      period: '04/2022 - 02/2023',
+      description:
+        'Gestao integral do negocio, incluindo operacao, relacionamento com clientes, estrategia comercial e gestao financeira. Experiencia empreendedora ampliando visao de negocio.',
+    },
+    {
+      company: 'Raia Drogasil',
+      role: 'Coordenadora de Desenvolvimento e Sistemas',
+      period: '11/2000 - 04/2022',
+      description:
+        'Lideranca de equipes em projetos estrategicos de desenvolvimento, transformacao digital e adequacao a LGPD. Atuacao estrategica na evolucao e sustentacao de produto digital com impacto direto em mais de 30% do faturamento corporativo.',
+    },
+  ]
+
+  const expertiseAreas = [
+    { icon: <Brain className="w-8 h-8" />, title: 'Inteligencia Artificial', desc: 'IA aplicada a gestao, lideranca e transformacao organizacional' },
+    { icon: <Code className="w-8 h-8" />, title: 'Engenharia de Software', desc: 'Java, .NET, Angular, Spring Boot, Kafka, Microsservicos' },
+    { icon: <Target className="w-8 h-8" />, title: 'Transformacao Digital', desc: 'Modernizacao arquitetural, cloud e evolucao de plataformas' },
+    { icon: <Users className="w-8 h-8" />, title: 'Lideranca Estrategica', desc: 'Times multidisciplinares de alta performance' },
+    { icon: <Briefcase className="w-8 h-8" />, title: 'Governanca de TI', desc: 'COBIT, ITIL, LGPD, eficiencia operacional' },
+    { icon: <Sparkles className="w-8 h-8" />, title: 'Agilidade Organizacional', desc: 'Lean, OKRs, Management 3.0, Cynefin' },
+  ]
+
+  const certifications = [
+    'COBIT 5 Foundation',
+    'ITIL v3 Foundation',
+    'DASSM',
+    'Business Agility Foundation & Practitioner',
+    'Management 3.0',
+    'Lean Inception Facilitator',
+    'Cynefin Practitioner',
+    'DevOps',
+    'LGPD Fundamentos',
+  ]
+
+  const education = [
+    { degree: 'MBA em Gestao de Negocios: Tecnologia e Transformacao Digital', school: 'FIA' },
+    { degree: 'MBA em Gestao de TI e Internet', school: 'UNINOVE' },
+    { degree: 'Pos-Graduacao em Analise de Sistemas', school: 'Estacio de Sa' },
+  ]
+
+  const executiveTraining = [
+    'Inteligencia Artificial para Gestores (FGV)',
+    'AI for Business (IBMEC)',
+    'Chief Digital Officer (FIA)',
+    'Lideranca Estrategica',
+    'OKRs',
+    'Metricas Ageis',
+    'Governanca',
+    'Transformacao Organizacional',
+  ]
+
+  return (
+    <div className="min-h-screen bg-slate-50 font-sans">
+      {/* Navigation */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrollY > 50 ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <button
+              onClick={() => scrollTo('home')}
+              className={`text-xl font-bold tracking-tight transition-colors ${
+                scrollY > 50 ? 'text-slate-800' : 'text-white'
+              }`}
+            >
+              RSB
+            </button>
+
+            {/* Desktop Nav */}
+            <div className="hidden md:flex items-center gap-1">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollTo(item.id)}
+                  className={`px-3 py-2 text-sm font-medium rounded-lg transition-all ${
+                    activeSection === item.id
+                      ? scrollY > 50
+                        ? 'text-violet-700 bg-violet-50'
+                        : 'text-white bg-white/20'
+                      : scrollY > 50
+                      ? 'text-slate-600 hover:text-violet-700 hover:bg-violet-50'
+                      : 'text-white/80 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`md:hidden p-2 rounded-lg ${
+                scrollY > 50 ? 'text-slate-800' : 'text-white'
+              }`}
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-slate-100 shadow-xl">
+            <div className="px-4 py-3 space-y-1">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollTo(item.id)}
+                  className={`block w-full text-left px-4 py-2.5 text-sm font-medium rounded-lg transition-all ${
+                    activeSection === item.id
+                      ? 'text-violet-700 bg-violet-50'
+                      : 'text-slate-600 hover:text-violet-700 hover:bg-violet-50'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section
+        id="home"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: 'url(/images/hero-bg.jpg)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-violet-900/90 via-slate-900/85 to-indigo-900/90" />
+
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+            <MapPin className="w-4 h-4 text-violet-300" />
+            <span className="text-sm text-violet-200">Sao Paulo, SP</span>
+          </div>
+
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            Rosiana da Silva
+            <br />
+            <span className="bg-gradient-to-r from-violet-300 to-indigo-300 bg-clip-text text-transparent">
+              Bertolazi
+            </span>
+          </h1>
+
+          <p className="text-xl sm:text-2xl text-slate-300 mb-4 font-light">
+            Executiva de Tecnologia | Autora | Palestrante | Empreendedora
+          </p>
+
+          <p className="text-lg text-violet-300 mb-10 font-medium">
+            Criadora do <span className="text-white font-semibold">IA em Pauta</span>
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+            <button
+              onClick={() => scrollTo('about')}
+              className="px-8 py-3.5 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-violet-600/30 hover:shadow-violet-500/40 hover:-translate-y-0.5"
+            >
+              Conheca minha historia
+            </button>
+            <button
+              onClick={() => scrollTo('contact')}
+              className="px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all backdrop-blur-sm border border-white/20 hover:-translate-y-0.5"
+            >
+              Entre em contato
+            </button>
+          </div>
+
+          <a
+            href="/RSB_2026.pdf"
+            download
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl transition-all backdrop-blur-sm border border-white/20 mb-12"
+          >
+            <Download className="w-5 h-5" />
+            Download Curriculo (PDF)
+          </a>
+
+          <button
+            onClick={() => scrollTo('about')}
+            className="animate-bounce text-white/60 hover:text-white transition-colors block mx-auto"
+          >
+            <ChevronDown className="w-8 h-8 mx-auto" />
+          </button>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="mb-8 flex justify-center lg:justify-start">
+                <img
+                  src="/images/rosiana-foto.png"
+                  alt="Rosiana da Silva Bertolazi"
+                  className="w-48 h-48 rounded-full object-cover shadow-xl border-4 border-violet-200"
+                />
+              </div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-6">
+                <Sparkles className="w-4 h-4" />
+                Sobre mim
+              </div>
+              <h2 className="text-4xl font-bold text-slate-800 mb-6">
+                Transformando negocios atraves da{' '}
+                <span className="text-violet-600">tecnologia e inovacao</span>
+              </h2>
+              <div className="space-y-4 text-slate-600 leading-relaxed">
+                <p>
+                  Executiva de Tecnologia com atuacao em transformacao digital, lideranca estrategica
+                  e evolucao de operacoes orientadas a inovacao. Experiencia na lideranca de times
+                  multidisciplinares, modernizacao tecnologica, transformacao organizacional e gestao
+                  de iniciativas criticas em empresas de medio e grande porte.
+                </p>
+                <p>
+                  Atuo conectando tecnologia, negocio e pessoas para acelerar resultados, aumentar
+                  eficiencia operacional e apoiar ambientes de alta performance. Vivencia em
+                  engenharia de software, governanca, agilidade organizacional, delivery estrategico
+                  e Inteligencia Artificial aplicada a gestao.
+                </p>
+                <p>
+                  Sou autora, palestrante e criadora do{' '}
+                  <span className="font-semibold text-violet-600">IA em Pauta</span>, iniciativa
+                  voltada para discussoes e conteudos sobre Inteligencia Artificial aplicada a gestao,
+                  lideranca e transformacao organizacional.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="bg-gradient-to-br from-violet-100 to-indigo-100 rounded-3xl p-8">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+                    <div className="text-3xl font-bold text-violet-600 mb-1">25+</div>
+                    <div className="text-sm text-slate-500">Anos de experiencia</div>
+                  </div>
+                  <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+                    <div className="text-3xl font-bold text-violet-600 mb-1">6+</div>
+                    <div className="text-sm text-slate-500">Empresas lideradas</div>
+                  </div>
+                  <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+                    <div className="text-3xl font-bold text-violet-600 mb-1">3</div>
+                    <div className="text-sm text-slate-500">MBAs e Pos</div>
+                  </div>
+                  <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+                    <div className="text-3xl font-bold text-violet-600 mb-1">9+</div>
+                    <div className="text-sm text-slate-500">Certificacoes</div>
+                  </div>
+                </div>
+
+                <div className="mt-6 bg-white rounded-2xl p-6 shadow-sm">
+                  <h3 className="font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                    <Target className="w-5 h-5 text-violet-600" />
+                    Principais Resultados
+                  </h3>
+                  <ul className="space-y-2 text-sm text-slate-600">
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 shrink-0" />
+                      Impacto direto em 30%+ do faturamento corporativo da Raia Drogasil
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 shrink-0" />
+                      Transformacao sistemica para adequacao a LGPD em grande varejista
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 shrink-0" />
+                      Modernizacao arquitetural com microsservicos e integracao de sistemas
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Expertise Section */}
+      <section id="expertise" className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
+              <Code className="w-4 h-4" />
+              Areas de Atuacao
+            </div>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Expertise & Competencias</h2>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+              Atuacao estrategica conectando tecnologia, negocio e pessoas para acelerar resultados
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {expertiseAreas.map((area, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 group border border-slate-100 hover:border-violet-200 hover:-translate-y-1"
+              >
+                <div className="w-14 h-14 bg-violet-100 rounded-xl flex items-center justify-center text-violet-600 mb-5 group-hover:bg-violet-600 group-hover:text-white transition-all">
+                  {area.icon}
+                </div>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">{area.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{area.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* IA em Pauta Section */}
+      <section className="py-24 bg-gradient-to-br from-violet-900 via-indigo-900 to-slate-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: 'url(/images/ai-tech.jpg)' }}
+          />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-violet-300 text-sm font-medium mb-6 backdrop-blur-sm">
+                <Brain className="w-4 h-4" />
+                Projeto Autoral
+              </div>
+              <h2 className="text-4xl font-bold text-white mb-6">
+                IA em Pauta
+              </h2>
+              <p className="text-lg text-slate-300 mb-6 leading-relaxed">
+                Iniciativa criada para discutir e disseminar conhecimento sobre Inteligencia
+                Artificial aplicada a gestao, lideranca e transformacao organizacional.
+              </p>
+              <p className="text-slate-400 mb-8 leading-relaxed">
+                Conteudos, discussoes e estudos voltados para gestores e lideres que desejam
+                compreender e aplicar IA de forma pratica e estrategica nas organizacoes.
+              </p>
+              <a
+                href="https://www.linkedin.com/in/iaempauta/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-violet-600/30 mb-6"
+              >
+                <Linkedin className="w-5 h-5" />
+                Siga o IA em Pauta no LinkedIn
+              </a>
+              <div className="flex flex-wrap gap-3">
+                {['IA Aplicada', 'Gestao', 'Lideranca', 'Transformacao', 'Inovacao'].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-4 py-2 bg-white/10 rounded-full text-sm text-violet-200 backdrop-blur-sm border border-white/10"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 border border-white/10">
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-violet-500/20 rounded-xl flex items-center justify-center shrink-0">
+                    <Mic className="w-6 h-6 text-violet-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold mb-1">Palestras</h3>
+                    <p className="text-slate-400 text-sm">
+                      Temas de transformacao digital, LGPD e agilidade organizacional
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-violet-500/20 rounded-xl flex items-center justify-center shrink-0">
+                    <BookOpen className="w-6 h-6 text-violet-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold mb-1">Publicacoes</h3>
+                    <p className="text-slate-400 text-sm">
+                      Livros, ebooks e artigos sobre tecnologia e gestao
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-violet-500/20 rounded-xl flex items-center justify-center shrink-0">
+                    <Users className="w-6 h-6 text-violet-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold mb-1">Comunidade</h3>
+                    <p className="text-slate-400 text-sm">
+                      Participacao voluntaria em educacao e disseminacao de conhecimento
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Career Timeline */}
+      <section id="career" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
+              <Briefcase className="w-4 h-4" />
+              Trajetoria Profissional
+            </div>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Carreira</h2>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+              Mais de 25 anos de experiencia em tecnologia e transformacao digital
+            </p>
+          </div>
+
+          <div className="relative">
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-violet-200 md:-translate-x-px" />
+
+            {careerData.map((item, idx) => (
+              <div
+                key={idx}
+                className={`relative flex flex-col md:flex-row items-start mb-12 ${
+                  idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                }`}
+              >
+                <div className="absolute left-4 md:left-1/2 w-4 h-4 bg-violet-600 rounded-full border-4 border-white shadow-md -translate-x-1/2 z-10 mt-6" />
+
+                <div className={`ml-12 md:ml-0 md:w-1/2 ${idx % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
+                  <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
+                    <div className="flex items-center gap-2 text-sm text-violet-600 font-medium mb-2">
+                      <Calendar className="w-4 h-4" />
+                      {item.period}
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-800 mb-1">{item.company}</h3>
+                    <p className="text-violet-600 font-medium mb-3">{item.role}</p>
+                    <p className="text-slate-500 text-sm leading-relaxed">{item.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Publications Section */}
+      <section id="publications" className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
+              <BookOpen className="w-4 h-4" />
+              Publicacoes
+            </div>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Livros, Ebooks & Artigos</h2>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+              Compartilhando conhecimento sobre tecnologia, gestao e inteligencia artificial
+            </p>
+          </div>
+
+          {/* Book */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">Livro</h3>
+            <div className="max-w-4xl mx-auto bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 hover:border-violet-200 transition-all">
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className="flex items-center justify-center p-8 bg-gradient-to-br from-slate-50 to-violet-50">
+                  <div className="flex gap-4">
+                    <img
+                      src="/images/jae-capa.jpg"
+                      alt="Jornada do Agil Escalado - Capa"
+                      className="w-40 rounded-lg shadow-lg"
+                    />
+                    <img
+                      src="/images/jae-contracapa.jpg"
+                      alt="Jornada do Agil Escalado - Contracapa"
+                      className="w-40 rounded-lg shadow-lg"
+                    />
+                  </div>
+                </div>
+                <div className="p-8 flex flex-col justify-center">
+                  <span className="text-sm text-violet-600 font-medium mb-2">Co-autora</span>
+                  <h4 className="text-xl font-bold text-slate-800 mb-3">Jornada do Agil Escalado</h4>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                    Entenda como a agilidade em escala com foco nas pessoas potencializa resultados de valor aos clientes. Conteudo criado por 64 pessoas com grande atuacao no mercado.
+                  </p>
+                  <a
+                    href="https://www.amazon.com.br/Jornada-%C3%81gil-Escalado-Adriana-Sim%C3%A3o/dp/6588431112"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-violet-600/30 w-fit"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Ver na Amazon
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Ebooks */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">Ebooks</h3>
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <a
+                href="https://x9x8f6d.short.gy/ebook_lideranca_rsb"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group border border-slate-100 hover:border-violet-200 hover:-translate-y-1"
+              >
+                <div className="flex items-center justify-center p-6 bg-gradient-to-br from-slate-900 to-slate-800">
+                  <img
+                    src="/images/ebook-lideranca.png"
+                    alt="Lideranca em Tempos de IA"
+                    className="h-64 rounded-lg shadow-lg"
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-lg font-bold text-slate-800 mb-2">Lideranca em Tempos de IA</h4>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-3">
+                    Decidir, Sustentar e Evoluir em um Mundo Automatizado
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-violet-600 text-sm font-medium">
+                    <Download className="w-4 h-4" />
+                    Baixar ebook
+                  </span>
+                </div>
+              </a>
+
+              <a
+                href="https://x9x8f6d.short.gy/IA_Pratica_RSB"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group border border-slate-100 hover:border-violet-200 hover:-translate-y-1"
+              >
+                <div className="flex items-center justify-center p-6 bg-gradient-to-br from-slate-900 to-slate-800">
+                  <img
+                    src="/images/ebook-ia-pratica.png"
+                    alt="IA na Pratica - Do Erro ao Valor"
+                    className="h-64 rounded-lg shadow-lg"
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-lg font-bold text-slate-800 mb-2">IA na Pratica: Do Erro ao Valor</h4>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-3">
+                    Como estruturar, planejar e investir em IA nas empresas
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-violet-600 text-sm font-medium">
+                    <Download className="w-4 h-4" />
+                    Baixar ebook
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          {/* Articles */}
+          <div>
+            <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">Artigos</h3>
+            <div className="max-w-md mx-auto">
+              <a
+                href="https://www.linkedin.com/in/rsbertolazi/recent-activity/articles/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 px-8 py-5 bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all border border-slate-100 hover:border-violet-200 hover:-translate-y-1 group"
+              >
+                <FileText className="w-8 h-8 text-violet-600" />
+                <div>
+                  <h4 className="text-lg font-bold text-slate-800">Artigos no LinkedIn</h4>
+                  <p className="text-slate-500 text-sm">Transformacao digital, LGPD, IA e gestao</p>
+                </div>
+                <ExternalLink className="w-5 h-5 text-violet-400 group-hover:text-violet-600 transition-colors ml-auto" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications & Education */}
+      <section id="certifications" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
+              <Award className="w-4 h-4" />
+              Formacao & Certificacoes
+            </div>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Educacao & Credenciais</h2>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Academic */}
+            <div className="bg-gradient-to-br from-violet-50 to-indigo-50 rounded-2xl p-8 border border-violet-100">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center">
+                  <GraduationCap className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800">Formacao Academica</h3>
+              </div>
+              <div className="space-y-4">
+                {education.map((edu, idx) => (
+                  <div key={idx} className="bg-white rounded-xl p-4 shadow-sm">
+                    <p className="font-semibold text-slate-800 text-sm">{edu.degree}</p>
+                    <p className="text-violet-600 text-sm mt-1">{edu.school}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Certifications */}
+            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center">
+                  <Award className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800">Certificacoes</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {certifications.map((cert, idx) => (
+                  <span
+                    key={idx}
+                    className="px-3 py-1.5 bg-white rounded-lg text-sm text-slate-700 shadow-sm border border-slate-100 hover:border-indigo-200 transition-colors"
+                  >
+                    {cert}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Executive Training */}
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border border-purple-100">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center">
+                  <Sparkles className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-slate-800">Formacao Executiva</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {executiveTraining.map((training, idx) => (
+                  <span
+                    key={idx}
+                    className="px-3 py-1.5 bg-white rounded-lg text-sm text-slate-700 shadow-sm border border-slate-100 hover:border-purple-200 transition-colors"
+                  >
+                    {training}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 bg-gradient-to-br from-violet-900 via-indigo-900 to-slate-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-violet-300 text-sm font-medium mb-6 backdrop-blur-sm">
+            <Mail className="w-4 h-4" />
+            Contato
+          </div>
+          <h2 className="text-4xl font-bold text-white mb-6">Vamos conversar?</h2>
+          <p className="text-lg text-slate-300 mb-12 max-w-2xl mx-auto">
+            Estou disponivel para palestras, consultorias, parcerias e oportunidades de colaboracao
+            em transformacao digital e inteligencia artificial.
+          </p>
+
+          <div className="grid sm:grid-cols-2 gap-6 max-w-lg mx-auto">
+            <a
+              href="mailto:rsbertolazi@gmail.com"
+              className="flex items-center justify-center gap-3 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
+            >
+              <Mail className="w-5 h-5 text-violet-300 group-hover:text-violet-200" />
+              <span className="font-medium">E-mail</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/rsbertolazi/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
+            >
+              <Linkedin className="w-5 h-5 text-violet-300 group-hover:text-violet-200" />
+              <span className="font-medium">LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 py-8 border-t border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-slate-400 text-sm">
+              &copy; {new Date().getFullYear()} Rosiana da Silva Bertolazi. Todos os direitos reservados.
+            </div>
+            <div className="flex items-center gap-6">
+              <a
+                href="mailto:rsbertolazi@gmail.com"
+                className="text-slate-400 hover:text-violet-400 transition-colors"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/rsbertolazi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-violet-400 transition-colors"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+export default App
