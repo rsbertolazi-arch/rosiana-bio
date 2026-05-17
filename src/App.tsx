@@ -211,11 +211,13 @@ function App() {
           <div className="flex justify-between items-center h-16">
             <button
               onClick={() => scrollTo('home')}
-              className={`text-xl font-bold tracking-tight transition-colors ${
-                scrollY > 50 ? 'text-slate-800' : 'text-white'
-              }`}
+              className="transition-opacity hover:opacity-80"
             >
-              RSB
+              <img
+                src="/images/logo-rsb.png"
+                alt="RSB - Rosiana da Silva Bertolazi"
+                className="h-10 w-auto"
+              />
             </button>
 
             {/* Desktop Nav */}
