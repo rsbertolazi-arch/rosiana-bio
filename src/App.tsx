@@ -813,7 +813,7 @@ function App() {
 
           <div className="grid sm:grid-cols-2 gap-6 max-w-lg mx-auto">
             <a
-              href="mailto:rsbertolazi@gmail.com"
+              href="mailto:rsbgestao@gmail.com"
               className="flex items-center justify-center gap-3 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
             >
               <Mail className="w-5 h-5 text-violet-300 group-hover:text-violet-200" />
@@ -841,7 +841,7 @@ function App() {
             </div>
             <div className="flex items-center gap-6">
               <a
-                href="mailto:rsbertolazi@gmail.com"
+                href="mailto:rsbgestao@gmail.com"
                 className="text-slate-400 hover:text-violet-400 transition-colors"
               >
                 <Mail className="w-5 h-5" />
