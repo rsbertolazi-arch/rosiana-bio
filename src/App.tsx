@@ -238,7 +238,7 @@ function App() {
               <img
                 src="/images/logo-rsb.png"
                 alt="RSB - Rosiana da Silva Bertolazi"
-                className="h-10 w-auto"
+                className="h-16 w-auto"
               />
             </button>
 
