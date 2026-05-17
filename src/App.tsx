@@ -40,6 +40,7 @@ function App() {
   const [formMessage, setFormMessage] = useState('')
   const [formSent, setFormSent] = useState(false)
   const [formSending, setFormSending] = useState(false)
+  const [formError, setFormError] = useState(false)
 
   const formatPhone = (value: string) => {
     const digits = value.replace(/\D/g, '')
@@ -55,9 +56,19 @@ function App() {
     setFormPhone(formatPhone(digits))
   }
 
+  const resetForm = () => {
+    setFormSent(false)
+    setFormError(false)
+    setFormName('')
+    setFormPhone('')
+    setFormIsWhatsapp(false)
+    setFormMessage('')
+  }
+
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setFormSending(true)
+    setFormError(false)
     try {
       const res = await fetch('https://formsubmit.co/ajax/rsbgestao@gmail.com', {
         method: 'POST',
@@ -68,13 +79,18 @@ function App() {
           WhatsApp: formIsWhatsapp ? 'Sim' : 'Não',
           Mensagem: formMessage,
           _subject: `Novo contato via site - ${formName}`,
+          _captcha: 'false',
+          _template: 'table',
         }),
       })
       if (res.ok) {
         setFormSent(true)
+        setTimeout(() => resetForm(), 30000)
+      } else {
+        setFormError(true)
       }
     } catch {
-      setFormSent(true)
+      setFormError(true)
     } finally {
       setFormSending(false)
     }
@@ -877,6 +893,11 @@ function App() {
                 </div>
               ) : (
                 <form onSubmit={handleFormSubmit} className="space-y-5">
+                  {formError && (
+                    <div className="bg-red-500/20 border border-red-500/30 rounded-xl px-4 py-3 text-red-300 text-sm">
+                      Erro ao enviar. Tente novamente ou entre em contato por e-mail.
+                    </div>
+                  )}
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-1.5">Nome Completo</label>
                     <input
