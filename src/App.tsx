@@ -990,12 +990,12 @@ function App() {
               &copy; {new Date().getFullYear()} Rosiana da Silva Bertolazi. Todos os direitos reservados.
             </div>
             <div className="flex items-center gap-6">
-              <a
-                href="mailto:rsbgestão@gmail.com"
-                className="text-slate-400 hover:text-violet-400 transition-colors"
+              <button
+                onClick={() => scrollTo('contact')}
+                className="text-slate-400 hover:text-violet-400 transition-colors cursor-pointer"
               >
                 <Mail className="w-5 h-5" />
-              </a>
+              </button>
               <a
                 href="https://www.linkedin.com/in/rsbertolazi/"
                 target="_blank"
