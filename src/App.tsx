@@ -910,7 +910,7 @@ function App() {
                     />
                     <label htmlFor="whatsapp" className="text-sm text-slate-300 flex items-center gap-1.5">
                       <MessageSquare className="w-4 h-4 text-green-400" />
-                      Este telefone tambem e WhatsApp
+                      Marque esse campo se o telefone informado tambem for WhatsApp
                     </label>
                   </div>
                   <div>
