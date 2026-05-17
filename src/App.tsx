@@ -100,6 +100,7 @@ function App() {
       period: '04/2022 - 02/2023',
       description:
         'Gestao integral do negocio, incluindo operacao, relacionamento com clientes, estrategia comercial e gestao financeira. Experiencia empreendedora ampliando visao de negocio.',
+      url: 'https://www.savoyard.com.br/',
     },
     {
       company: 'Raia Drogasil',
@@ -532,6 +533,17 @@ function App() {
                     <h3 className="text-xl font-bold text-slate-800 mb-1">{item.company}</h3>
                     <p className="text-violet-600 font-medium mb-3">{item.role}</p>
                     <p className="text-slate-500 text-sm leading-relaxed">{item.description}</p>
+                    {item.url && (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 mt-3 text-sm text-violet-600 hover:text-violet-500 font-medium transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        Visitar site
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
