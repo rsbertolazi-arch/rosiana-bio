@@ -59,13 +59,13 @@ function App() {
     e.preventDefault()
     setFormSending(true)
     try {
-      const res = await fetch('https://formsubmit.co/ajax/rsbgestao@gmail.com', {
+      const res = await fetch('https://formsubmit.co/ajax/rsbgestão@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           Nome: formName,
           Telefone: formPhone,
-          WhatsApp: formIsWhatsapp ? 'Sim' : 'Nao',
+          WhatsApp: formIsWhatsapp ? 'Sim' : 'Não',
           Mensagem: formMessage,
           _subject: `Novo contato via site - ${formName}`,
         }),
@@ -105,12 +105,12 @@ function App() {
   }
 
   const navItems = [
-    { id: 'home', label: 'Inicio' },
+    { id: 'home', label: 'Início' },
     { id: 'about', label: 'Sobre' },
     { id: 'expertise', label: 'Expertise' },
     { id: 'career', label: 'Carreira' },
-    { id: 'publications', label: 'Publicacoes' },
-    { id: 'certifications', label: 'Certificacoes' },
+    { id: 'publications', label: 'Publicações' },
+    { id: 'certifications', label: 'Certificações' },
     { id: 'contact', label: 'Contato' },
   ]
 
@@ -120,35 +120,35 @@ function App() {
       role: 'IT Leader',
       period: '12/2025 - Atual',
       description:
-        'Gestao de Engenharia de Software em iniciativas relacionadas a contas corporativas (Pessoa Juridica). Lideranca de times atuando em solucoes de alta e baixa plataforma em ambiente de alta criticidade operacional. Atuacao estrategica conectando tecnologia, negocio e entrega continua, incluindo utilizacao pratica de Inteligencia Artificial.',
+        'Gestão de Engenharia de Software em iniciativas relacionadas a contas corporativas (Pessoa Jurídica). Liderança de times atuando em soluções de alta e baixa plataforma em ambiente de alta criticidade operacional. Atuação estratégica conectando tecnologia, negócio e entrega contínua, incluindo utilização prática de Inteligência Artificial.',
     },
     {
       company: 'CNP Seguradora',
       role: 'Coordenadora de TI',
       period: '09/2024 - 10/2025',
       description:
-        'Lideranca de times responsaveis por desenvolvimento e sustentacao de sistemas estrategicos de seguros e odontologia. Evolucao de plataformas criticas com foco em estabilidade, escalabilidade e eficiencia operacional.',
+        'Liderança de times responsáveis por desenvolvimento e sustentação de sistemas estratégicos de seguros e odontologia. Evolução de plataformas críticas com foco em estabilidade, escalabilidade e eficiência operacional.',
     },
     {
       company: 'Mills',
       role: 'Coordenadora Digital',
       period: '06/2024 - 08/2024',
       description:
-        'Lideranca de iniciativas de transformacao digital e modernizacao tecnologica. Gestao de times multidisciplinares em projetos envolvendo Java, Node.js, RPA e microsservicos.',
+        'Liderança de iniciativas de transformação digital e modernização tecnológica. Gestão de times multidisciplinares em projetos envolvendo Java, Node.js, RPA e microsserviços.',
     },
     {
       company: 'Conduent Brasil',
       role: 'Coordenadora de Desenvolvimento e Sistemas',
       period: '03/2023 - 02/2024',
       description:
-        'Gestao de equipes responsaveis por sistemas ligados a previdencia privada. Coordenacao tecnica e estrategica de iniciativas envolvendo .NET, ASP Core e aplicacoes corporativas.',
+        'Gestão de equipes responsáveis por sistemas ligados a previdência privada. Coordenação técnica e estratégica de iniciativas envolvendo .NET, ASP Core e aplicações corporativas.',
     },
     {
       company: 'Savoyard Fromagerie',
-      role: 'Socia-Proprietaria',
+      role: 'Sócia-Proprietária',
       period: '04/2022 - 02/2023',
       description:
-        'Gestao integral do negocio, incluindo operacao, relacionamento com clientes, estrategia comercial e gestao financeira. Experiencia empreendedora ampliando visao de negocio.',
+        'Gestão integral do negócio, incluindo operação, relacionamento com clientes, estrategia comercial e gestão financeira. Experiência empreendedora ampliando visao de negócio.',
       url: 'https://www.savoyard.com.br/',
     },
     {
@@ -156,16 +156,16 @@ function App() {
       role: 'Coordenadora de Desenvolvimento e Sistemas',
       period: '11/2000 - 04/2022',
       description:
-        'Lideranca de equipes em projetos estrategicos de desenvolvimento, transformacao digital e adequacao a LGPD. Atuacao estrategica na evolucao e sustentacao de produto digital com impacto direto em mais de 30% do faturamento corporativo.',
+        'Liderança de equipes em projetos estratégicos de desenvolvimento, transformação digital e adequação a LGPD. Atuação estratégica na evolução e sustentação de produto digital com impacto direto em mais de 30% do faturamento corporativo.',
     },
   ]
 
   const expertiseAreas = [
-    { icon: <Brain className="w-8 h-8" />, title: 'Inteligencia Artificial', desc: 'IA aplicada a gestao, lideranca e transformacao organizacional' },
-    { icon: <Code className="w-8 h-8" />, title: 'Engenharia de Software', desc: 'Java, .NET, Angular, Spring Boot, Kafka, Microsservicos' },
-    { icon: <Target className="w-8 h-8" />, title: 'Transformacao Digital', desc: 'Modernizacao arquitetural, cloud e evolucao de plataformas' },
-    { icon: <Users className="w-8 h-8" />, title: 'Lideranca Estrategica', desc: 'Times multidisciplinares de alta performance' },
-    { icon: <Briefcase className="w-8 h-8" />, title: 'Governanca de TI', desc: 'COBIT, ITIL, LGPD, eficiencia operacional' },
+    { icon: <Brain className="w-8 h-8" />, title: 'Inteligência Artificial', desc: 'IA aplicada a gestão, liderança e transformação organizacional' },
+    { icon: <Code className="w-8 h-8" />, title: 'Engenharia de Software', desc: 'Java, .NET, Angular, Spring Boot, Kafka, Microsserviços' },
+    { icon: <Target className="w-8 h-8" />, title: 'Transformação Digital', desc: 'Modernização arquitetural, cloud e evolução de plataformas' },
+    { icon: <Users className="w-8 h-8" />, title: 'Liderança Estratégica', desc: 'Times multidisciplinares de alta performance' },
+    { icon: <Briefcase className="w-8 h-8" />, title: 'Governança de TI', desc: 'COBIT, ITIL, LGPD, eficiência operacional' },
     { icon: <Sparkles className="w-8 h-8" />, title: 'Agilidade Organizacional', desc: 'Lean, OKRs, Management 3.0, Cynefin' },
   ]
 
@@ -179,24 +179,24 @@ function App() {
     'Cynefin Practitioner',
     'DevOps',
     'LGPD Fundamentos',
-    'LGPD - Lideranca de Projetos',
+    'LGPD - Liderança de Projetos',
   ]
 
   const education = [
-    { degree: 'MBA em Gestao de Negocios: Tecnologia e Transformacao Digital', school: 'FIA' },
-    { degree: 'MBA em Gestao de TI e Internet', school: 'UNINOVE' },
-    { degree: 'Pos-Graduacao em Analise de Sistemas', school: 'Estacio de Sa' },
+    { degree: 'MBA em Gestão de Negócios: Tecnologia e Transformação Digital', school: 'FIA' },
+    { degree: 'MBA em Gestão de TI e Internet', school: 'UNINOVE' },
+    { degree: 'Pós-Graduação em Análise de Sistemas', school: 'Estácio de Sá' },
   ]
 
   const executiveTraining = [
-    'Inteligencia Artificial para Gestores (FGV)',
+    'Inteligência Artificial para Gestores (FGV)',
     'AI for Business (IBMEC)',
     'Chief Digital Officer (FIA)',
-    'Lideranca Estrategica',
+    'Liderança Estratégica',
     'OKRs',
-    'Metricas Ageis',
-    'Governanca',
-    'Transformacao Organizacional',
+    'Métricas Ágeis',
+    'Governança',
+    'Transformação Organizacional',
   ]
 
   return (
@@ -287,7 +287,7 @@ function App() {
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-8 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
             <MapPin className="w-4 h-4 text-violet-300" />
-            <span className="text-sm text-violet-200">Sao Paulo, SP</span>
+            <span className="text-sm text-violet-200">São Paulo, SP</span>
           </div>
 
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
@@ -311,7 +311,7 @@ function App() {
               onClick={() => scrollTo('about')}
               className="px-8 py-3.5 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-violet-600/30 hover:shadow-violet-500/40 hover:-translate-y-0.5"
             >
-              Conheca minha historia
+              Conheça minha história
             </button>
             <button
               onClick={() => scrollTo('contact')}
@@ -327,7 +327,7 @@ function App() {
             className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl transition-all backdrop-blur-sm border border-white/20 mb-12"
           >
             <Download className="w-5 h-5" />
-            Download Curriculo (PDF)
+            Download Currículo (PDF)
           </a>
 
           <button
@@ -356,27 +356,27 @@ function App() {
                 Sobre mim
               </div>
               <h2 className="text-4xl font-bold text-slate-800 mb-6">
-                Transformando negocios atraves da{' '}
-                <span className="text-violet-600">tecnologia e inovacao</span>
+                Transformando negócios através da{' '}
+                <span className="text-violet-600">tecnologia e inovação</span>
               </h2>
               <div className="space-y-4 text-slate-600 leading-relaxed">
                 <p>
-                  Executiva de Tecnologia com atuacao em transformacao digital, lideranca estrategica
-                  e evolucao de operacoes orientadas a inovacao. Experiencia na lideranca de times
-                  multidisciplinares, modernizacao tecnologica, transformacao organizacional e gestao
-                  de iniciativas criticas em empresas de medio e grande porte.
+                  Executiva de Tecnologia com atuação em transformação digital, liderança estratégica
+                  e evolução de operações orientadas a inovação. Experiência na liderança de times
+                  multidisciplinares, modernização tecnológica, transformação organizacional e gestão
+                  de iniciativas críticas em empresas de medio e grande porte.
                 </p>
                 <p>
-                  Atuo conectando tecnologia, negocio e pessoas para acelerar resultados, aumentar
-                  eficiencia operacional e apoiar ambientes de alta performance. Vivencia em
-                  engenharia de software, governanca, agilidade organizacional, delivery estrategico
-                  e Inteligencia Artificial aplicada a gestao.
+                  Atuo conectando tecnologia, negócio e pessoas para acelerar resultados, aumentar
+                  eficiência operacional e apoiar ambientes de alta performance. Vivência em
+                  engenharia de software, governança, agilidade organizacional, delivery estratégico
+                  e Inteligência Artificial aplicada a gestão.
                 </p>
                 <p>
                   Sou autora, palestrante e criadora do{' '}
                   <span className="font-semibold text-violet-600">IA em Pauta</span>, iniciativa
-                  voltada para discussoes e conteudos sobre Inteligencia Artificial aplicada a gestao,
-                  lideranca e transformacao organizacional.
+                  voltada para discussões e conteúdos sobre Inteligência Artificial aplicada a gestão,
+                  liderança e transformação organizacional.
                 </p>
               </div>
             </div>
@@ -386,7 +386,7 @@ function App() {
                 <div className="grid grid-cols-2 gap-6">
                   <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
                     <div className="text-3xl font-bold text-violet-600 mb-1">25+</div>
-                    <div className="text-sm text-slate-500">Anos de experiencia</div>
+                    <div className="text-sm text-slate-500">Anos de experiência</div>
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
                     <div className="text-3xl font-bold text-violet-600 mb-1">6+</div>
@@ -394,11 +394,11 @@ function App() {
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
                     <div className="text-3xl font-bold text-violet-600 mb-1">3</div>
-                    <div className="text-sm text-slate-500">MBAs e Pos</div>
+                    <div className="text-sm text-slate-500">MBAs e Pós</div>
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
                     <div className="text-3xl font-bold text-violet-600 mb-1">9+</div>
-                    <div className="text-sm text-slate-500">Certificacoes</div>
+                    <div className="text-sm text-slate-500">Certificações</div>
                   </div>
                 </div>
 
@@ -414,11 +414,11 @@ function App() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 shrink-0" />
-                      Transformacao sistemica para adequacao a LGPD em grande varejista
+                      Transformação sistêmica para adequação a LGPD em grande varejista
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 shrink-0" />
-                      Modernizacao arquitetural com microsservicos e integracao de sistemas
+                      Modernização arquitetural com microsserviços e integração de sistemas
                     </li>
                   </ul>
                 </div>
@@ -434,11 +434,11 @@ function App() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
               <Layers className="w-4 h-4" />
-              Areas de Atuacao
+              Áreas de Atuação
             </div>
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">Expertise & Competencias</h2>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Expertise & Competências</h2>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              Atuacao estrategica conectando tecnologia, negocio e pessoas para acelerar resultados
+              Atuação estratégica conectando tecnologia, negócio e pessoas para acelerar resultados
             </p>
           </div>
 
@@ -479,11 +479,11 @@ function App() {
               </h2>
               <p className="text-lg text-slate-300 mb-6 leading-relaxed">
                 Iniciativa criada para discutir e disseminar conhecimento sobre Inteligencia
-                Artificial aplicada a gestao, lideranca e transformacao organizacional.
+                Artificial aplicada a gestão, liderança e transformação organizacional.
               </p>
               <p className="text-slate-400 mb-8 leading-relaxed">
-                Conteudos, discussoes e estudos voltados para gestores e lideres que desejam
-                compreender e aplicar IA de forma pratica e estrategica nas organizacoes.
+                Conteúdos, discussões e estudos voltados para gestores e líderes que desejam
+                compreender e aplicar IA de forma prática e estratégica nas organizações.
               </p>
               <a
                 href="https://www.linkedin.com/in/iaempauta/"
@@ -495,7 +495,7 @@ function App() {
                 Siga o IA em Pauta no LinkedIn
               </a>
               <div className="flex flex-wrap gap-3">
-                {['IA Aplicada', 'Gestao', 'Lideranca', 'Transformacao', 'Inovacao'].map((tag) => (
+                {['IA Aplicada', 'Gestão', 'Liderança', 'Transformação', 'Inovação'].map((tag) => (
                   <span
                     key={tag}
                     className="px-4 py-2 bg-white/10 rounded-full text-sm text-violet-200 backdrop-blur-sm border border-white/10"
@@ -515,7 +515,7 @@ function App() {
                   <div>
                     <h3 className="text-white font-semibold mb-1">Palestras</h3>
                     <p className="text-slate-400 text-sm">
-                      Temas de transformacao digital, LGPD e agilidade organizacional
+                      Temas de transformação digital, LGPD e agilidade organizacional
                     </p>
                   </div>
                 </div>
@@ -524,9 +524,9 @@ function App() {
                     <BookOpen className="w-6 h-6 text-violet-300" />
                   </div>
                   <div>
-                    <h3 className="text-white font-semibold mb-1">Publicacoes</h3>
+                    <h3 className="text-white font-semibold mb-1">Publicações</h3>
                     <p className="text-slate-400 text-sm">
-                      Livros, e-Books e artigos sobre tecnologia e gestao
+                      Livros, e-Books e artigos sobre tecnologia e gestão
                     </p>
                   </div>
                 </div>
@@ -537,7 +537,7 @@ function App() {
                   <div>
                     <h3 className="text-white font-semibold mb-1">Comunidade</h3>
                     <p className="text-slate-400 text-sm">
-                      Participacao voluntaria em educacao e disseminacao de conhecimento
+                      Participação voluntária em educação e disseminação de conhecimento
                     </p>
                   </div>
                 </div>
@@ -553,11 +553,11 @@ function App() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
               <Briefcase className="w-4 h-4" />
-              Trajetoria Profissional
+              Trajetória Profissional
             </div>
             <h2 className="text-4xl font-bold text-slate-800 mb-4">Carreira</h2>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              Mais de 25 anos de experiencia em tecnologia e transformacao digital
+              Mais de 25 anos de experiência em tecnologia e transformação digital
             </p>
           </div>
 
@@ -607,11 +607,11 @@ function App() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
               <BookOpen className="w-4 h-4" />
-              Publicacoes
+              Publicações
             </div>
             <h2 className="text-4xl font-bold text-slate-800 mb-4">Livros, e-Books & Artigos</h2>
             <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              Compartilhando conhecimento sobre tecnologia, gestao e inteligencia artificial
+              Compartilhando conhecimento sobre tecnologia, gestão e inteligência artificial
             </p>
           </div>
 
@@ -624,21 +624,21 @@ function App() {
                   <div className="flex gap-4">
                     <img
                       src="/images/jae-capa.jpg"
-                      alt="Jornada do Agil Escalado - Capa"
+                      alt="Jornada do Ágil Escalado - Capa"
                       className="w-40 rounded-lg shadow-lg"
                     />
                     <img
                       src="/images/jae-contracapa.jpg"
-                      alt="Jornada do Agil Escalado - Contracapa"
+                      alt="Jornada do Ágil Escalado - Contracapa"
                       className="w-40 rounded-lg shadow-lg"
                     />
                   </div>
                 </div>
                 <div className="p-8 flex flex-col justify-center">
                   <span className="text-sm text-violet-600 font-medium mb-2">Co-autora</span>
-                  <h4 className="text-xl font-bold text-slate-800 mb-3">Jornada do Agil Escalado</h4>
+                  <h4 className="text-xl font-bold text-slate-800 mb-3">Jornada do Ágil Escalado</h4>
                   <p className="text-slate-500 text-sm leading-relaxed mb-6">
-                    Entenda como a agilidade em escala com foco nas pessoas potencializa resultados de valor aos clientes. Conteudo criado por 64 pessoas com grande atuacao no mercado.
+                    Entenda como a agilidade em escala com foco nas pessoas potencializa resultados de valor aos clientes. Conteúdo criado por 64 pessoas com grande atuação no mercado.
                   </p>
                   <a
                     href="https://www.amazon.com.br/Jornada-%C3%81gil-Escalado-Adriana-Sim%C3%A3o/dp/6588431112"
@@ -659,20 +659,20 @@ function App() {
             <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">e-Books</h3>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <a
-                href="https://x9x8f6d.short.gy/ebook_lideranca_rsb"
+                href="https://x9x8f6d.short.gy/ebook_liderança_rsb"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group border border-slate-100 hover:border-violet-200 hover:-translate-y-1"
               >
                 <div className="flex items-center justify-center p-6 bg-gradient-to-br from-violet-100 to-indigo-100">
                   <img
-                    src="/images/ebook-lideranca.png"
-                    alt="Lideranca em Tempos de IA"
+                    src="/images/ebook-liderança.png"
+                    alt="Liderança em Tempos de IA"
                     className="h-64 rounded-lg shadow-lg"
                   />
                 </div>
                 <div className="p-6">
-                  <h4 className="text-lg font-bold text-slate-800 mb-2">Lideranca em Tempos de IA</h4>
+                  <h4 className="text-lg font-bold text-slate-800 mb-2">Liderança em Tempos de IA</h4>
                   <p className="text-slate-500 text-sm leading-relaxed mb-3">
                     Decidir, Sustentar e Evoluir em um Mundo Automatizado
                   </p>
@@ -691,13 +691,13 @@ function App() {
               >
                 <div className="flex items-center justify-center p-6 bg-gradient-to-br from-indigo-100 to-purple-100">
                   <img
-                    src="/images/ebook-ia-pratica.png"
-                    alt="IA na Pratica - Do Erro ao Valor"
+                    src="/images/ebook-ia-prática.png"
+                    alt="IA na Prática - Do Erro ao Valor"
                     className="h-64 rounded-lg shadow-lg"
                   />
                 </div>
                 <div className="p-6">
-                  <h4 className="text-lg font-bold text-slate-800 mb-2">IA na Pratica: Do Erro ao Valor</h4>
+                  <h4 className="text-lg font-bold text-slate-800 mb-2">IA na Prática: Do Erro ao Valor</h4>
                   <p className="text-slate-500 text-sm leading-relaxed mb-3">
                     Como estruturar, planejar e investir em IA nas empresas
                   </p>
@@ -736,7 +736,7 @@ function App() {
                   </div>
                   <h4 className="text-xl font-bold text-slate-800 mb-3">Webinar sobre LGPD</h4>
                   <p className="text-slate-500 text-sm leading-relaxed mb-6">
-                    Webinar sobre Lei Geral de Protecao de Dados (LGPD), abordando aspectos praticos da implementacao e adequacao em times de desenvolvimento de software.
+                    Webinar sobre Lei Geral de Proteção de Dados (LGPD), abordando aspectos práticos da implementação e adequação em times de desenvolvimento de software.
                   </p>
                   <a
                     href="https://www.youtube.com/watch?v=Lbz_v7nIgD8&t=34s"
@@ -765,7 +765,7 @@ function App() {
                 <FileText className="w-8 h-8 text-violet-600" />
                 <div>
                   <h4 className="text-lg font-bold text-slate-800">Artigos no LinkedIn</h4>
-                  <p className="text-slate-500 text-sm">Transformacao digital, LGPD, IA e gestao</p>
+                  <p className="text-slate-500 text-sm">Transformação digital, LGPD, IA e gestão</p>
                 </div>
                 <ExternalLink className="w-5 h-5 text-violet-400 group-hover:text-violet-600 transition-colors ml-auto" />
               </a>
@@ -780,9 +780,9 @@ function App() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
               <Award className="w-4 h-4" />
-              Formacao & Certificacoes
+              Formação & Certificações
             </div>
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">Educacao & Credenciais</h2>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">Educação & Credenciais</h2>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
@@ -792,7 +792,7 @@ function App() {
                 <div className="w-12 h-12 bg-violet-600 rounded-xl flex items-center justify-center">
                   <GraduationCap className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-800">Formacao Academica</h3>
+                <h3 className="text-xl font-bold text-slate-800">Formação Acadêmica</h3>
               </div>
               <div className="space-y-4">
                 {education.map((edu, idx) => (
@@ -810,7 +810,7 @@ function App() {
                 <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center">
                   <Award className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-800">Certificacoes</h3>
+                <h3 className="text-xl font-bold text-slate-800">Certificações</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {certifications.map((cert, idx) => (
@@ -830,7 +830,7 @@ function App() {
                 <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center">
                   <Sparkles className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-800">Formacao Executiva</h3>
+                <h3 className="text-xl font-bold text-slate-800">Formação Executiva</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {executiveTraining.map((training, idx) => (
@@ -857,8 +857,8 @@ function App() {
             </div>
             <h2 className="text-4xl font-bold text-white mb-6">Vamos conversar?</h2>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-              Estou disponivel para palestras, consultorias, parcerias e oportunidades de colaboracao
-              em transformacao digital e inteligencia artificial.
+              Estou disponível para palestras, consultorias, parcerias e oportunidades de colaboração
+              em transformação digital e inteligência artificial.
             </p>
           </div>
 
@@ -910,7 +910,7 @@ function App() {
                     />
                     <label htmlFor="whatsapp" className="text-sm text-slate-300 flex items-center gap-1.5">
                       <MessageSquare className="w-4 h-4 text-green-400" />
-                      Marque esse campo se o telefone informado tambem for WhatsApp
+                      Marque esse campo se o telefone informado também for WhatsApp
                     </label>
                   </div>
                   <div>
@@ -942,13 +942,13 @@ function App() {
             {/* Contact Info */}
             <div className="flex flex-col justify-center gap-6">
               <a
-                href="mailto:rsbgestao@gmail.com"
+                href="mailto:rsbgestão@gmail.com"
                 className="flex items-center gap-4 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
               >
                 <Mail className="w-6 h-6 text-violet-300 group-hover:text-violet-200" />
                 <div className="text-left">
                   <div className="text-sm text-slate-400">E-mail</div>
-                  <div className="font-medium">rsbgestao@gmail.com</div>
+                  <div className="font-medium">rsbgestão@gmail.com</div>
                 </div>
               </a>
               <a
@@ -989,7 +989,7 @@ function App() {
             </div>
             <div className="flex items-center gap-6">
               <a
-                href="mailto:rsbgestao@gmail.com"
+                href="mailto:rsbgestão@gmail.com"
                 className="text-slate-400 hover:text-violet-400 transition-colors"
               >
                 <Mail className="w-5 h-5" />
