@@ -20,6 +20,9 @@ import {
   Calendar,
   Download,
   FileText,
+  Layers,
+  Youtube,
+  Shield,
 } from 'lucide-react'
 import './App.css'
 
@@ -126,6 +129,7 @@ function App() {
     'Cynefin Practitioner',
     'DevOps',
     'LGPD Fundamentos',
+    'LGPD - Lideranca de Projetos',
   ]
 
   const education = [
@@ -379,7 +383,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
-              <Code className="w-4 h-4" />
+              <Layers className="w-4 h-4" />
               Areas de Atuacao
             </div>
             <h2 className="text-4xl font-bold text-slate-800 mb-4">Expertise & Competencias</h2>
@@ -599,7 +603,7 @@ function App() {
                 rel="noopener noreferrer"
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group border border-slate-100 hover:border-violet-200 hover:-translate-y-1"
               >
-                <div className="flex items-center justify-center p-6 bg-gradient-to-br from-slate-900 to-slate-800">
+                <div className="flex items-center justify-center p-6 bg-gradient-to-br from-violet-100 to-indigo-100">
                   <img
                     src="/images/ebook-lideranca.png"
                     alt="Lideranca em Tempos de IA"
@@ -624,7 +628,7 @@ function App() {
                 rel="noopener noreferrer"
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group border border-slate-100 hover:border-violet-200 hover:-translate-y-1"
               >
-                <div className="flex items-center justify-center p-6 bg-gradient-to-br from-slate-900 to-slate-800">
+                <div className="flex items-center justify-center p-6 bg-gradient-to-br from-indigo-100 to-purple-100">
                   <img
                     src="/images/ebook-ia-pratica.png"
                     alt="IA na Pratica - Do Erro ao Valor"
@@ -642,6 +646,48 @@ function App() {
                   </span>
                 </div>
               </a>
+            </div>
+          </div>
+
+          {/* Webinar */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">Webinar</h3>
+            <div className="max-w-4xl mx-auto bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 hover:border-violet-200 transition-all">
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className="flex items-center justify-center p-8 bg-gradient-to-br from-red-50 to-orange-50">
+                  <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-lg">
+                    <img
+                      src="https://img.youtube.com/vi/Lbz_v7nIgD8/hqdefault.jpg"
+                      alt="Webinar LGPD"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                      <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg">
+                        <Youtube className="w-8 h-8 text-white" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-8 flex flex-col justify-center">
+                  <div className="inline-flex items-center gap-2 mb-3">
+                    <Shield className="w-5 h-5 text-violet-600" />
+                    <span className="text-sm text-violet-600 font-medium">LGPD</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-slate-800 mb-3">Webinar sobre LGPD</h4>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                    Webinar sobre Lei Geral de Protecao de Dados (LGPD), abordando aspectos praticos da implementacao e adequacao em times de desenvolvimento de software.
+                  </p>
+                  <a
+                    href="https://www.youtube.com/watch?v=Lbz_v7nIgD8&t=34s"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-red-600/30 w-fit"
+                  >
+                    <Youtube className="w-4 h-4" />
+                    Assistir no YouTube
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
