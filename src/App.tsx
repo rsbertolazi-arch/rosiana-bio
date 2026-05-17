@@ -479,11 +479,11 @@ function App() {
               <h2 className="text-4xl font-bold text-white mb-6">
                 IA em Pauta
               </h2>
-              <p className="text-lg text-slate-300 mb-6 leading-relaxed">
+              <p className="text-lg text-slate-300 mb-6 leading-relaxed text-justify">
                 Iniciativa criada para discutir e disseminar conhecimento sobre Inteligencia
                 Artificial aplicada a gestão, liderança e transformação organizacional.
               </p>
-              <p className="text-slate-400 mb-8 leading-relaxed">
+              <p className="text-slate-400 mb-8 leading-relaxed text-justify">
                 Conteúdos, discussões e estudos voltados para gestores e líderes que desejam
                 compreender e aplicar IA de forma prática e estratégica nas organizações.
               </p>
