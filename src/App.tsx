@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type FormEvent } from 'react'
 import {
   Briefcase,
   GraduationCap,
@@ -39,6 +39,7 @@ function App() {
   const [formIsWhatsapp, setFormIsWhatsapp] = useState(false)
   const [formMessage, setFormMessage] = useState('')
   const [formSent, setFormSent] = useState(false)
+  const [formSending, setFormSending] = useState(false)
 
   const formatPhone = (value: string) => {
     const digits = value.replace(/\D/g, '')
@@ -56,20 +57,43 @@ function App() {
 
   const resetForm = () => {
     setFormSent(false)
+    setFormSending(false)
     setFormName('')
     setFormPhone('')
     setFormIsWhatsapp(false)
     setFormMessage('')
   }
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    if (params.get('sent') === 'true') {
-      setFormSent(true)
-      window.history.replaceState({}, '', window.location.pathname + '#contact')
-      setTimeout(() => resetForm(), 30000)
+  const handleFormSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    setFormSending(true)
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: '267a4f5c-49e4-42cd-abc4-2c0177c378ca',
+          subject: `Novo contato via site - ${formName}`,
+          from_name: formName,
+          Nome: formName,
+          Telefone: formPhone,
+          WhatsApp: formIsWhatsapp ? 'Sim' : 'Não',
+          Mensagem: formMessage,
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setFormSent(true)
+        setTimeout(() => resetForm(), 30000)
+      } else {
+        alert('Erro ao enviar mensagem. Por favor, tente novamente.')
+      }
+    } catch {
+      alert('Erro ao enviar mensagem. Por favor, tente novamente.')
+    } finally {
+      setFormSending(false)
     }
-  }, [])
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -882,11 +906,7 @@ function App() {
                   <p className="text-slate-300 text-sm">Entraremos em contato em breve.</p>
                 </div>
               ) : (
-                <form action="https://api.web3forms.com/submit" method="POST" className="space-y-5">
-                  <input type="hidden" name="access_key" value="267a4f5c-49e4-42cd-abc4-2c0177c378ca" />
-                  <input type="hidden" name="subject" value="Novo contato via site" />
-                  <input type="hidden" name="_captcha" value="false" />
-                  <input type="hidden" name="_next" value={`${window.location.origin}?sent=true`} />
+                <form onSubmit={handleFormSubmit} className="space-y-5">
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-1.5">Nome Completo</label>
                     <input
@@ -916,11 +936,6 @@ function App() {
                   </div>
                   <div className="flex items-center gap-3">
                     <input
-                      type="hidden"
-                      name="WhatsApp"
-                      value={formIsWhatsapp ? 'Sim' : 'Não'}
-                    />
-                    <input
                       type="checkbox"
                       id="whatsapp"
                       checked={formIsWhatsapp}
@@ -949,10 +964,11 @@ function App() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-violet-600/30"
+                    disabled={formSending}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-violet-600/30 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-4 h-4" />
-                    Enviar
+                    {formSending ? 'Enviando...' : 'Enviar'}
                   </button>
                 </form>
               )}
