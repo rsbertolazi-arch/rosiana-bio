@@ -231,7 +231,7 @@ function App() {
               <img
                 src="/images/logo-rsb.png"
                 alt="RSB - Rosiana da Silva Bertolazi"
-                className="h-20 w-auto"
+                className={`${scrollY > 50 ? 'h-12' : 'h-24'} w-auto transition-all duration-300`}
               />
             </button>
 
