@@ -64,39 +64,32 @@ function App() {
     setFormMessage('')
   }
 
-  const buildMailtoFallback = () => {
-    const subject = encodeURIComponent(`Novo contato via site - ${formName}`)
-    const body = encodeURIComponent(
-      `Nome: ${formName}\nTelefone: ${formPhone}\nWhatsApp: ${formIsWhatsapp ? 'Sim' : 'Não'}\n\nMensagem:\n${formMessage}`
-    )
-    return `mailto:rsbgestao@gmail.com?subject=${subject}&body=${body}`
-  }
-
   const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setFormSending(true)
     try {
-      const res = await fetch('https://formsubmit.co/ajax/rsbgestao@gmail.com', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
+          access_key: '267a4f5c-49e4-42cd-abc4-2c0177c378ca',
+          subject: `Novo contato via site - ${formName}`,
+          from_name: formName,
           Nome: formName,
           Telefone: formPhone,
           WhatsApp: formIsWhatsapp ? 'Sim' : 'Não',
           Mensagem: formMessage,
-          _subject: `Novo contato via site - ${formName}`,
-          _captcha: 'false',
-          _template: 'table',
         }),
       })
-      if (res.ok) {
+      const data = await res.json()
+      if (data.success) {
         setFormSent(true)
         setTimeout(() => resetForm(), 30000)
       } else {
-        window.location.href = buildMailtoFallback()
+        alert('Erro ao enviar mensagem. Por favor, tente novamente.')
       }
     } catch {
-      window.location.href = buildMailtoFallback()
+      alert('Erro ao enviar mensagem. Por favor, tente novamente.')
     } finally {
       setFormSending(false)
     }
@@ -238,7 +231,7 @@ function App() {
               <img
                 src="/images/logo-rsb.png"
                 alt="RSB - Rosiana da Silva Bertolazi"
-                className="h-16 w-auto"
+                className="h-20 w-auto"
               />
             </button>
 
