@@ -134,6 +134,7 @@ function App() {
       company: 'F1RST Digital Services',
       role: 'IT Leader',
       period: '12/2025 - Atual',
+      logo: '/images/logo-f1rst.jpeg',
       description:
         'Gestão de Engenharia de Software em iniciativas relacionadas a contas corporativas (Pessoa Jurídica). Liderança de times atuando em soluções de alta e baixa plataforma em ambiente de alta criticidade operacional. Atuação estratégica conectando tecnologia, negócio e entrega contínua, incluindo utilização prática de Inteligência Artificial.',
     },
@@ -141,6 +142,7 @@ function App() {
       company: 'CNP Seguradora',
       role: 'Coordenadora de TI',
       period: '09/2024 - 10/2025',
+      logo: '/images/logo-cnp.webp',
       description:
         'Liderança de times responsáveis por desenvolvimento e sustentação de sistemas estratégicos de seguros e odontologia. Evolução de plataformas críticas com foco em estabilidade, escalabilidade e eficiência operacional.',
     },
@@ -148,6 +150,7 @@ function App() {
       company: 'Mills',
       role: 'Coordenadora Digital',
       period: '06/2024 - 08/2024',
+      logo: '/images/logo-mills.png',
       description:
         'Liderança de iniciativas de transformação digital e modernização tecnológica. Gestão de times multidisciplinares em projetos envolvendo Java, Node.js, RPA e microsserviços.',
     },
@@ -155,6 +158,7 @@ function App() {
       company: 'Conduent Brasil',
       role: 'Coordenadora de Desenvolvimento e Sistemas',
       period: '03/2023 - 02/2024',
+      logo: '/images/logo-conduent.png',
       description:
         'Gestão de equipes responsáveis por sistemas ligados a previdência privada. Coordenação técnica e estratégica de iniciativas envolvendo .NET, ASP Core e aplicações corporativas.',
     },
@@ -162,14 +166,16 @@ function App() {
       company: 'Savoyard Fromagerie',
       role: 'Sócia-Proprietária',
       period: '04/2022 - 02/2023',
+      logo: '/images/logo-savoyard.jpg',
       description:
         'Gestão integral do negócio, incluindo operação, relacionamento com clientes, estrategia comercial e gestão financeira. Experiência empreendedora ampliando visao de negócio.',
       url: 'https://www.savoyard.com.br/',
     },
     {
-      company: 'Raia Drogasil',
+      company: 'RD Saúde (Raia Drogasil)',
       role: 'Coordenadora de Desenvolvimento e Sistemas',
       period: '11/2000 - 04/2022',
+      logo: '/images/logo-rd.png',
       description:
         'Liderança de equipes em projetos estratégicos de desenvolvimento, transformação digital e adequação a LGPD. Atuação estratégica na evolução e sustentação de produto digital com impacto direto em mais de 30% do faturamento corporativo.',
     },
@@ -231,7 +237,7 @@ function App() {
               <img
                 src="/images/logo-rsb.png"
                 alt="RSB - Rosiana da Silva Bertolazi"
-                className={`${scrollY > 50 ? 'h-12' : 'h-24'} w-auto transition-all duration-300`}
+                className={`${scrollY > 50 ? 'h-12' : 'h-32'} w-auto transition-all duration-300`}
               />
             </button>
 
@@ -596,7 +602,16 @@ function App() {
                       <Calendar className="w-4 h-4" />
                       {item.period}
                     </div>
-                    <h3 className="text-xl font-bold text-slate-800 mb-1">{item.company}</h3>
+                    <div className="flex items-center gap-4 mb-1">
+                      {item.logo && (
+                        <img
+                          src={item.logo}
+                          alt={`Logo ${item.company}`}
+                          className="h-12 w-16 object-contain shrink-0"
+                        />
+                      )}
+                      <h3 className="text-xl font-bold text-slate-800">{item.company}</h3>
+                    </div>
                     <p className="text-violet-600 font-medium mb-3">{item.role}</p>
                     <p className="text-slate-500 text-sm leading-relaxed">{item.description}</p>
                     {item.url && (
