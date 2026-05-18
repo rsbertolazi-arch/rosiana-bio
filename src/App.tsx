@@ -1,4 +1,4 @@
-import { useState, useEffect, type FormEvent } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Briefcase,
   GraduationCap,
@@ -39,7 +39,6 @@ function App() {
   const [formIsWhatsapp, setFormIsWhatsapp] = useState(false)
   const [formMessage, setFormMessage] = useState('')
   const [formSent, setFormSent] = useState(false)
-  const [formSending, setFormSending] = useState(false)
 
   const formatPhone = (value: string) => {
     const digits = value.replace(/\D/g, '')
@@ -57,43 +56,20 @@ function App() {
 
   const resetForm = () => {
     setFormSent(false)
-    setFormSending(false)
     setFormName('')
     setFormPhone('')
     setFormIsWhatsapp(false)
     setFormMessage('')
   }
 
-  const handleFormSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    setFormSending(true)
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: '267a4f5c-49e4-42cd-abc4-2c0177c378ca',
-          subject: `Novo contato via site - ${formName}`,
-          from_name: formName,
-          Nome: formName,
-          Telefone: formPhone,
-          WhatsApp: formIsWhatsapp ? 'Sim' : 'Não',
-          Mensagem: formMessage,
-        }),
-      })
-      const data = await res.json()
-      if (data.success) {
-        setFormSent(true)
-        setTimeout(() => resetForm(), 30000)
-      } else {
-        alert('Erro ao enviar mensagem. Por favor, tente novamente.')
-      }
-    } catch {
-      alert('Erro ao enviar mensagem. Por favor, tente novamente.')
-    } finally {
-      setFormSending(false)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('sent') === 'true') {
+      setFormSent(true)
+      window.history.replaceState({}, '', window.location.pathname + '#contact')
+      setTimeout(() => resetForm(), 30000)
     }
-  }
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -906,11 +882,16 @@ function App() {
                   <p className="text-slate-300 text-sm">Entraremos em contato em breve.</p>
                 </div>
               ) : (
-                <form onSubmit={handleFormSubmit} className="space-y-5">
+                <form action="https://api.web3forms.com/submit" method="POST" className="space-y-5">
+                  <input type="hidden" name="access_key" value="267a4f5c-49e4-42cd-abc4-2c0177c378ca" />
+                  <input type="hidden" name="subject" value="Novo contato via site" />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_next" value={`${window.location.origin}?sent=true`} />
                   <div>
                     <label className="block text-sm font-medium text-slate-300 mb-1.5">Nome Completo</label>
                     <input
                       type="text"
+                      name="Nome"
                       required
                       value={formName}
                       onChange={(e) => setFormName(e.target.value)}
@@ -924,6 +905,7 @@ function App() {
                       <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                       <input
                         type="tel"
+                        name="Telefone"
                         required
                         value={formPhone}
                         onChange={(e) => handlePhoneChange(e.target.value)}
@@ -933,6 +915,11 @@ function App() {
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
+                    <input
+                      type="hidden"
+                      name="WhatsApp"
+                      value={formIsWhatsapp ? 'Sim' : 'Não'}
+                    />
                     <input
                       type="checkbox"
                       id="whatsapp"
@@ -950,6 +937,7 @@ function App() {
                       Mensagem <span className="text-slate-400">({formMessage.length}/300)</span>
                     </label>
                     <textarea
+                      name="Mensagem"
                       required
                       maxLength={300}
                       rows={4}
@@ -961,11 +949,10 @@ function App() {
                   </div>
                   <button
                     type="submit"
-                    disabled={formSending}
-                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 disabled:bg-violet-800 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all shadow-lg shadow-violet-600/30"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-500 text-white font-semibold rounded-xl transition-all shadow-lg shadow-violet-600/30"
                   >
                     <Send className="w-4 h-4" />
-                    {formSending ? 'Enviando...' : 'Enviar'}
+                    Enviar
                   </button>
                 </form>
               )}
