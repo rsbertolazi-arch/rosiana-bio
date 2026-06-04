@@ -72,7 +72,7 @@ function App() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          access_key: '267a4f5c-49e4-42cd-abc4-2c0177c378ca',
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
           subject: `Novo contato via site - ${formName}`,
           from_name: formName,
           Nome: formName,
