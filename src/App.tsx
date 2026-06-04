@@ -28,6 +28,16 @@ import {
   CheckCircle,
   MessageSquare,
 } from 'lucide-react'
+import {
+  SectionContainer,
+  SectionBadge,
+  SectionHeader,
+  StatCard,
+  BulletItem,
+  FeatureItem,
+  ContactLink,
+  EbookCard,
+} from './components'
 import './App.css'
 
 function App() {
@@ -228,7 +238,7 @@ function App() {
           scrollY > 50 ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionContainer>
           <div className="flex justify-between items-center h-16">
             <button
               onClick={() => scrollTo('home')}
@@ -272,7 +282,7 @@ function App() {
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
-        </div>
+        </SectionContainer>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
@@ -364,7 +374,7 @@ function App() {
 
       {/* About Section */}
       <section id="about" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionContainer>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="mb-8 flex justify-center lg:justify-start">
@@ -374,10 +384,7 @@ function App() {
                   className="w-48 h-48 rounded-full object-cover shadow-xl border-4 border-violet-200"
                 />
               </div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-6">
-                <Sparkles className="w-4 h-4" />
-                Sobre mim
-              </div>
+              <SectionBadge icon={<Sparkles className="w-4 h-4" />} label="Sobre mim" className="mb-6" />
               <h2 className="text-4xl font-bold text-slate-800 mb-6">
                 Transformando negócios através da{' '}
                 <span className="text-violet-600">tecnologia e inovação</span>
@@ -407,22 +414,10 @@ function App() {
             <div className="relative">
               <div className="bg-gradient-to-br from-violet-100 to-indigo-100 rounded-3xl p-8">
                 <div className="grid grid-cols-2 gap-6">
-                  <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
-                    <div className="text-3xl font-bold text-violet-600 mb-1">25+</div>
-                    <div className="text-sm text-slate-500">Anos de experiência</div>
-                  </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
-                    <div className="text-3xl font-bold text-violet-600 mb-1">6+</div>
-                    <div className="text-sm text-slate-500">Empresas lideradas</div>
-                  </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
-                    <div className="text-3xl font-bold text-violet-600 mb-1">3</div>
-                    <div className="text-sm text-slate-500">MBAs e Pós</div>
-                  </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
-                    <div className="text-3xl font-bold text-violet-600 mb-1">9+</div>
-                    <div className="text-sm text-slate-500">Certificações</div>
-                  </div>
+                  <StatCard value="25+" label="Anos de experiência" />
+                  <StatCard value="6+" label="Empresas lideradas" />
+                  <StatCard value="3" label="MBAs e Pós" />
+                  <StatCard value="9+" label="Certificações" />
                 </div>
 
                 <div className="mt-6 bg-white rounded-2xl p-6 shadow-sm">
@@ -431,39 +426,26 @@ function App() {
                     Principais Resultados
                   </h3>
                   <ul className="space-y-2 text-sm text-slate-600">
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 shrink-0" />
-                      Impacto direto em 30%+ do faturamento corporativo da Raia Drogasil
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 shrink-0" />
-                      Transformação sistêmica para adequação a LGPD em grande varejista
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-violet-500 mt-2 shrink-0" />
-                      Modernização arquitetural com microsserviços e integração de sistemas
-                    </li>
+                    <BulletItem>Impacto direto em 30%+ do faturamento corporativo da Raia Drogasil</BulletItem>
+                    <BulletItem>Transformação sistêmica para adequação a LGPD em grande varejista</BulletItem>
+                    <BulletItem>Modernização arquitetural com microsserviços e integração de sistemas</BulletItem>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </SectionContainer>
       </section>
 
       {/* Expertise Section */}
       <section id="expertise" className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
-              <Layers className="w-4 h-4" />
-              Áreas de Atuação
-            </div>
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">Expertise & Competências</h2>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              Atuação estratégica conectando tecnologia, negócio e pessoas para acelerar resultados
-            </p>
-          </div>
+        <SectionContainer>
+          <SectionHeader
+            icon={<Layers className="w-4 h-4" />}
+            badge="Áreas de Atuação"
+            title="Expertise & Competências"
+            subtitle="Atuação estratégica conectando tecnologia, negócio e pessoas para acelerar resultados"
+          />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {expertiseAreas.map((area, idx) => (
@@ -479,7 +461,7 @@ function App() {
               </div>
             ))}
           </div>
-        </div>
+        </SectionContainer>
       </section>
 
       {/* IA em Pauta Section */}
@@ -490,13 +472,10 @@ function App() {
             style={{ backgroundImage: 'url(/images/ai-tech.jpg)' }}
           />
         </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionContainer className="relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-violet-300 text-sm font-medium mb-6 backdrop-blur-sm">
-                <Brain className="w-4 h-4" />
-                Projeto Autoral
-              </div>
+              <SectionBadge icon={<Brain className="w-4 h-4" />} label="Projeto Autoral" variant="dark" className="mb-6" />
               <h2 className="text-4xl font-bold text-white mb-6">
                 IA em Pauta
               </h2>
@@ -531,58 +510,36 @@ function App() {
 
             <div className="bg-white/5 backdrop-blur-lg rounded-3xl p-8 border border-white/10">
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-violet-500/20 rounded-xl flex items-center justify-center shrink-0">
-                    <Mic className="w-6 h-6 text-violet-300" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-1">Palestras</h3>
-                    <p className="text-slate-400 text-sm">
-                      Temas de transformação digital, LGPD e agilidade organizacional
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-violet-500/20 rounded-xl flex items-center justify-center shrink-0">
-                    <BookOpen className="w-6 h-6 text-violet-300" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-1">Publicações</h3>
-                    <p className="text-slate-400 text-sm">
-                      Livros, e-Books e artigos sobre tecnologia e gestão
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-violet-500/20 rounded-xl flex items-center justify-center shrink-0">
-                    <Users className="w-6 h-6 text-violet-300" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-1">Comunidade</h3>
-                    <p className="text-slate-400 text-sm">
-                      Participação voluntária em educação e disseminação de conhecimento
-                    </p>
-                  </div>
-                </div>
+                <FeatureItem
+                  icon={<Mic className="w-6 h-6 text-violet-300" />}
+                  title="Palestras"
+                  description="Temas de transformação digital, LGPD e agilidade organizacional"
+                />
+                <FeatureItem
+                  icon={<BookOpen className="w-6 h-6 text-violet-300" />}
+                  title="Publicações"
+                  description="Livros, e-Books e artigos sobre tecnologia e gestão"
+                />
+                <FeatureItem
+                  icon={<Users className="w-6 h-6 text-violet-300" />}
+                  title="Comunidade"
+                  description="Participação voluntária em educação e disseminação de conhecimento"
+                />
               </div>
             </div>
           </div>
-        </div>
+        </SectionContainer>
       </section>
 
       {/* Career Timeline */}
       <section id="career" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
-              <Briefcase className="w-4 h-4" />
-              Trajetória Profissional
-            </div>
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">Carreira</h2>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              Mais de 25 anos de experiência em tecnologia e transformação digital
-            </p>
-          </div>
+        <SectionContainer>
+          <SectionHeader
+            icon={<Briefcase className="w-4 h-4" />}
+            badge="Trajetória Profissional"
+            title="Carreira"
+            subtitle="Mais de 25 anos de experiência em tecnologia e transformação digital"
+          />
 
           <div className="relative">
             <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-violet-200 md:-translate-x-px" />
@@ -630,22 +587,18 @@ function App() {
               </div>
             ))}
           </div>
-        </div>
+        </SectionContainer>
       </section>
 
       {/* Publications Section */}
       <section id="publications" className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
-              <BookOpen className="w-4 h-4" />
-              Publicações
-            </div>
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">Livros, e-Books & Artigos</h2>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-              Compartilhando conhecimento sobre tecnologia, gestão e inteligência artificial
-            </p>
-          </div>
+        <SectionContainer>
+          <SectionHeader
+            icon={<BookOpen className="w-4 h-4" />}
+            badge="Publicações"
+            title="Livros, e-Books & Artigos"
+            subtitle="Compartilhando conhecimento sobre tecnologia, gestão e inteligência artificial"
+          />
 
           {/* Book */}
           <div className="mb-16">
@@ -690,55 +643,22 @@ function App() {
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">e-Books</h3>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <a
+              <EbookCard
                 href="https://x9x8f6d.short.gy/ebook_lideranca_rsb"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group border border-slate-100 hover:border-violet-200 hover:-translate-y-1"
-              >
-                <div className="flex items-center justify-center p-6 bg-gradient-to-br from-violet-100 to-indigo-100">
-                  <img
-                    src="/images/ebook-lideranca.png"
-                    alt="Liderança em Tempos de IA"
-                    className="h-64 rounded-lg shadow-lg"
-                  />
-                </div>
-                <div className="p-6">
-                  <h4 className="text-lg font-bold text-slate-800 mb-2">Liderança em Tempos de IA</h4>
-                  <p className="text-slate-500 text-sm leading-relaxed mb-3">
-                    Decidir, Sustentar e Evoluir em um Mundo Automatizado
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-violet-600 text-sm font-medium">
-                    <Download className="w-4 h-4" />
-                    Baixar e-Book
-                  </span>
-                </div>
-              </a>
-
-              <a
+                imageSrc="/images/ebook-lideranca.png"
+                imageAlt="Liderança em Tempos de IA"
+                title="Liderança em Tempos de IA"
+                description="Decidir, Sustentar e Evoluir em um Mundo Automatizado"
+                gradientClasses="from-violet-100 to-indigo-100"
+              />
+              <EbookCard
                 href="https://x9x8f6d.short.gy/IA_Pratica_RSB"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group border border-slate-100 hover:border-violet-200 hover:-translate-y-1"
-              >
-                <div className="flex items-center justify-center p-6 bg-gradient-to-br from-indigo-100 to-purple-100">
-                  <img
-                    src="/images/ebook-ia-pratica.png"
-                    alt="IA na Prática - Do Erro ao Valor"
-                    className="h-64 rounded-lg shadow-lg"
-                  />
-                </div>
-                <div className="p-6">
-                  <h4 className="text-lg font-bold text-slate-800 mb-2">IA na Prática: Do Erro ao Valor</h4>
-                  <p className="text-slate-500 text-sm leading-relaxed mb-3">
-                    Como estruturar, planejar e investir em IA nas empresas
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-violet-600 text-sm font-medium">
-                    <Download className="w-4 h-4" />
-                    Baixar e-Book
-                  </span>
-                </div>
-              </a>
+                imageSrc="/images/ebook-ia-pratica.png"
+                imageAlt="IA na Prática - Do Erro ao Valor"
+                title="IA na Prática: Do Erro ao Valor"
+                description="Como estruturar, planejar e investir em IA nas empresas"
+                gradientClasses="from-indigo-100 to-purple-100"
+              />
             </div>
           </div>
 
@@ -803,19 +723,17 @@ function App() {
               </a>
             </div>
           </div>
-        </div>
+        </SectionContainer>
       </section>
 
       {/* Certifications & Education */}
       <section id="certifications" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-medium mb-4">
-              <Award className="w-4 h-4" />
-              Formação & Certificações
-            </div>
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">Educação & Credenciais</h2>
-          </div>
+        <SectionContainer>
+          <SectionHeader
+            icon={<Award className="w-4 h-4" />}
+            badge="Formação & Certificações"
+            title="Educação & Credenciais"
+          />
 
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Academic */}
@@ -876,17 +794,14 @@ function App() {
               </div>
             </div>
           </div>
-        </div>
+        </SectionContainer>
       </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-gradient-to-br from-violet-900 via-indigo-900 to-slate-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-violet-300 text-sm font-medium mb-6 backdrop-blur-sm">
-              <Mail className="w-4 h-4" />
-              Contato
-            </div>
+            <SectionBadge icon={<Mail className="w-4 h-4" />} label="Contato" variant="dark" className="mb-6" />
             <h2 className="text-4xl font-bold text-white mb-6">Vamos conversar?</h2>
             <p className="text-lg text-slate-300 max-w-2xl mx-auto">
               Estou disponível para palestras, consultorias, parcerias e oportunidades de colaboração
@@ -976,40 +891,26 @@ function App() {
 
             {/* Contact Info */}
             <div className="flex flex-col justify-center gap-6">
-              <a
+              <ContactLink
                 href="mailto:rsbgestao@gmail.com"
-                className="flex items-center gap-4 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
-              >
-                <Mail className="w-6 h-6 text-violet-300 group-hover:text-violet-200" />
-                <div className="text-left">
-                  <div className="text-sm text-slate-400">E-mail</div>
-                  <div className="font-medium">rsbgestao@gmail.com</div>
-                </div>
-              </a>
-              <a
+                icon={<Mail className="w-6 h-6" />}
+                label="E-mail"
+                value="rsbgestao@gmail.com"
+              />
+              <ContactLink
                 href="https://www.linkedin.com/in/rsbertolazi/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
-              >
-                <Linkedin className="w-6 h-6 text-violet-300 group-hover:text-violet-200" />
-                <div className="text-left">
-                  <div className="text-sm text-slate-400">LinkedIn</div>
-                  <div className="font-medium">rsbertolazi</div>
-                </div>
-              </a>
-              <a
+                icon={<Linkedin className="w-6 h-6" />}
+                label="LinkedIn"
+                value="rsbertolazi"
+                external
+              />
+              <ContactLink
                 href="https://www.linkedin.com/in/iaempauta/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 px-6 py-4 bg-white/10 hover:bg-white/20 rounded-2xl text-white transition-all backdrop-blur-sm border border-white/10 hover:border-white/20 group"
-              >
-                <Mic className="w-6 h-6 text-violet-300 group-hover:text-violet-200" />
-                <div className="text-left">
-                  <div className="text-sm text-slate-400">IA em Pauta</div>
-                  <div className="font-medium">iaempauta</div>
-                </div>
-              </a>
+                icon={<Mic className="w-6 h-6" />}
+                label="IA em Pauta"
+                value="iaempauta"
+                external
+              />
             </div>
           </div>
         </div>
@@ -1017,7 +918,7 @@ function App() {
 
       {/* Footer */}
       <footer className="bg-slate-900 py-8 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionContainer>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-slate-400 text-sm">
               &copy; {new Date().getFullYear()} Rosiana da Silva Bertolazi. Todos os direitos reservados.
@@ -1039,7 +940,7 @@ function App() {
               </a>
             </div>
           </div>
-        </div>
+        </SectionContainer>
       </footer>
     </div>
   )
