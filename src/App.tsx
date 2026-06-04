@@ -28,6 +28,8 @@ import {
   CheckCircle,
   MessageSquare,
 } from 'lucide-react'
+import { formatPhone, sanitizePhoneInput, buildFormPayload } from './lib/helpers'
+import { navItems, careerData, certifications, education, executiveTraining } from './lib/data'
 import './App.css'
 
 function App() {
@@ -41,18 +43,8 @@ function App() {
   const [formSent, setFormSent] = useState(false)
   const [formSending, setFormSending] = useState(false)
 
-  const formatPhone = (value: string) => {
-    const digits = value.replace(/\D/g, '')
-    if (digits.length === 0) return ''
-    if (digits.length <= 2) return `(${digits}`
-    if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`
-    if (digits.length <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`
-    return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7, 11)}`
-  }
-
   const handlePhoneChange = (value: string) => {
-    const digits = value.replace(/\D/g, '').slice(0, 11)
-    setFormPhone(formatPhone(digits))
+    setFormPhone(formatPhone(sanitizePhoneInput(value)))
   }
 
   const resetForm = () => {
@@ -71,15 +63,13 @@ function App() {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          access_key: '267a4f5c-49e4-42cd-abc4-2c0177c378ca',
-          subject: `Novo contato via site - ${formName}`,
-          from_name: formName,
-          Nome: formName,
-          Telefone: formPhone,
-          WhatsApp: formIsWhatsapp ? 'Sim' : 'Não',
-          Mensagem: formMessage,
-        }),
+        body: JSON.stringify(buildFormPayload({
+          name: formName,
+          phone: formPhone,
+          isWhatsapp: formIsWhatsapp,
+          message: formMessage,
+          accessKey: '267a4f5c-49e4-42cd-abc4-2c0177c378ca',
+        })),
       })
       const data = await res.json()
       if (data.success) {
@@ -119,68 +109,6 @@ function App() {
     }
   }
 
-  const navItems = [
-    { id: 'home', label: 'Início' },
-    { id: 'about', label: 'Sobre' },
-    { id: 'expertise', label: 'Expertise' },
-    { id: 'career', label: 'Carreira' },
-    { id: 'publications', label: 'Publicações' },
-    { id: 'certifications', label: 'Certificações' },
-    { id: 'contact', label: 'Contato' },
-  ]
-
-  const careerData = [
-    {
-      company: 'F1RST Digital Services',
-      role: 'IT Leader',
-      period: '12/2025 - Atual',
-      logo: '/images/logo-f1rst.jpeg',
-      description:
-        'Gestão de Engenharia de Software em iniciativas relacionadas a contas corporativas (Pessoa Jurídica). Liderança de times atuando em soluções de alta e baixa plataforma em ambiente de alta criticidade operacional. Atuação estratégica conectando tecnologia, negócio e entrega contínua, incluindo utilização prática de Inteligência Artificial.',
-    },
-    {
-      company: 'CNP Seguradora',
-      role: 'Coordenadora de TI',
-      period: '09/2024 - 10/2025',
-      logo: '/images/logo-cnp.webp',
-      description:
-        'Liderança de times responsáveis por desenvolvimento e sustentação de sistemas estratégicos de seguros e odontologia. Evolução de plataformas críticas com foco em estabilidade, escalabilidade e eficiência operacional.',
-    },
-    {
-      company: 'Mills',
-      role: 'Coordenadora Digital',
-      period: '06/2024 - 08/2024',
-      logo: '/images/logo-mills.png',
-      description:
-        'Liderança de iniciativas de transformação digital e modernização tecnológica. Gestão de times multidisciplinares em projetos envolvendo Java, Node.js, RPA e microsserviços.',
-    },
-    {
-      company: 'Conduent Brasil',
-      role: 'Coordenadora de Desenvolvimento e Sistemas',
-      period: '03/2023 - 02/2024',
-      logo: '/images/logo-conduent.png',
-      description:
-        'Gestão de equipes responsáveis por sistemas ligados a previdência privada. Coordenação técnica e estratégica de iniciativas envolvendo .NET, ASP Core e aplicações corporativas.',
-    },
-    {
-      company: 'Savoyard Fromagerie',
-      role: 'Sócia-Proprietária',
-      period: '04/2022 - 02/2023',
-      logo: '/images/logo-savoyard.jpg',
-      description:
-        'Gestão integral do negócio, incluindo operação, relacionamento com clientes, estrategia comercial e gestão financeira. Experiência empreendedora ampliando visao de negócio.',
-      url: 'https://www.savoyard.com.br/',
-    },
-    {
-      company: 'RD Saúde (Raia Drogasil)',
-      role: 'Coordenadora de Desenvolvimento e Sistemas',
-      period: '11/2000 - 04/2022',
-      logo: '/images/logo-rd.png',
-      description:
-        'Liderança de equipes em projetos estratégicos de desenvolvimento, transformação digital e adequação a LGPD. Atuação estratégica na evolução e sustentação de produto digital com impacto direto em mais de 30% do faturamento corporativo.',
-    },
-  ]
-
   const expertiseAreas = [
     { icon: <Brain className="w-8 h-8" />, title: 'Inteligência Artificial', desc: 'IA aplicada a gestão, liderança e transformação organizacional' },
     { icon: <Code className="w-8 h-8" />, title: 'Engenharia de Software', desc: 'Java, .NET, Angular, Spring Boot, Kafka, Microsserviços' },
@@ -188,36 +116,6 @@ function App() {
     { icon: <Users className="w-8 h-8" />, title: 'Liderança Estratégica', desc: 'Times multidisciplinares de alta performance' },
     { icon: <Briefcase className="w-8 h-8" />, title: 'Governança de TI', desc: 'COBIT, ITIL, LGPD, eficiência operacional' },
     { icon: <Sparkles className="w-8 h-8" />, title: 'Agilidade Organizacional', desc: 'Lean, OKRs, Management 3.0, Cynefin' },
-  ]
-
-  const certifications = [
-    'COBIT 5 Foundation',
-    'ITIL v3 Foundation',
-    'DASSM',
-    'Business Agility Foundation & Practitioner',
-    'Management 3.0',
-    'Lean Inception Facilitator',
-    'Cynefin Practitioner',
-    'DevOps',
-    'LGPD Fundamentos',
-    'LGPD - Liderança de Projetos',
-  ]
-
-  const education = [
-    { degree: 'MBA em Gestão de Negócios: Tecnologia e Transformação Digital', school: 'FIA' },
-    { degree: 'MBA em Gestão de TI e Internet', school: 'UNINOVE' },
-    { degree: 'Pós-Graduação em Análise de Sistemas', school: 'Estácio de Sá' },
-  ]
-
-  const executiveTraining = [
-    'Inteligência Artificial para Gestores (FGV)',
-    'AI for Business (IBMEC)',
-    'Chief Digital Officer (FIA)',
-    'Liderança Estratégica',
-    'OKRs',
-    'Métricas Ágeis',
-    'Governança',
-    'Transformação Organizacional',
   ]
 
   return (
