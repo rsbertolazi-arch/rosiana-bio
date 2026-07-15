@@ -690,7 +690,7 @@ function App() {
           {/* e-Books */}
           <div className="mb-16">
             <h3 className="text-2xl font-bold text-slate-800 mb-8 text-center">e-Books</h3>
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
               <a
                 href="https://x9x8f6d.short.gy/ebook_lideranca_rsb"
                 target="_blank"
@@ -733,6 +733,31 @@ function App() {
                   <h4 className="text-lg font-bold text-slate-800 mb-2">IA na Prática: Do Erro ao Valor</h4>
                   <p className="text-slate-500 text-sm leading-relaxed mb-3">
                     Como estruturar, planejar e investir em IA nas empresas
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-violet-600 text-sm font-medium">
+                    <Download className="w-4 h-4" />
+                    Baixar e-Book
+                  </span>
+                </div>
+              </a>
+
+              <a
+                href="https://pt.scribd.com/document/1053699617/Inteligencia-Artificial-Sem-Complicacao"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all group border border-slate-100 hover:border-violet-200 hover:-translate-y-1"
+              >
+                <div className="flex items-center justify-center p-6 bg-gradient-to-br from-purple-100 to-violet-100">
+                  <img
+                    src="/images/ebook-ia-sem-complicacao.png"
+                    alt="Inteligência Artificial sem Complicação"
+                    className="h-64 rounded-lg shadow-lg"
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-lg font-bold text-slate-800 mb-2">Inteligência Artificial sem Complicação</h4>
+                  <p className="text-slate-500 text-sm leading-relaxed mb-3">
+                    Um guia prático para quem quer começar hoje
                   </p>
                   <span className="inline-flex items-center gap-1 text-violet-600 text-sm font-medium">
                     <Download className="w-4 h-4" />
