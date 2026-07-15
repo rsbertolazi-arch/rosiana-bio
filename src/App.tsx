@@ -210,6 +210,7 @@ function App() {
   ]
 
   const executiveTraining = [
+    'Liderança para a Era da IA (MIT)',
     'Inteligência Artificial para Gestores (FGV)',
     'AI for Business (IBMEC)',
     'Chief Digital Officer (FIA)',
